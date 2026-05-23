@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>品牌设计 — 万晨图影设计</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;700;900&family=Space+Mono:wght@400;700&family=Anton&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0d0d0d;
+    --void: #000;
+    --white: #f4f4f0;
+    --yellow: #e5ff00;
+    --red: #ff2a2a;
+    --cyan: #00f0ff;
+    --grey: #3a3a3a;
+    --concrete: #b0b0a8;
+  }
+
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .ticker { width: 100%; background: var(--yellow); color: var(--void); overflow: hidden; border-top: 4px solid var(--void); border-bottom: 4px solid var(--void); padding: 8px 0; }
+  .ticker-inner { display: flex; gap: 0; animation: ticker 18s linear infinite; white-space: nowrap; }
+  .ticker-inner span { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(14px, 2.5vw, 22px); letter-spacing: 0.08em; padding: 0 16px; text-transform: uppercase; flex-shrink: 0; }
+  .ticker-inner span.sep { color: var(--red); }
+  @keyframes ticker { 100% { transform: translateX(-50%); } }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px clamp(16px, 5vw, 60px); background: var(--void); border-bottom: 3px solid var(--yellow); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 5vw, 42px); letter-spacing: 0.06em; color: var(--yellow); line-height: 1; text-transform: uppercase; }
+  .logo a { color: inherit; text-decoration: none; }
+  .logo .strike { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; color: var(--white); margin-right: 4px; }
+  .nav-links { display: flex; gap: clamp(16px, 4vw, 40px); list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: clamp(14px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; position: relative; transition: color .15s; }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .category-hero { padding: clamp(80px, 15vw, 150px) clamp(16px, 5vw, 60px); background: var(--void); position: relative; }
+  .category-hero .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; margin-bottom: 30px; }
+  .category-hero .back-link:hover { color: var(--yellow); }
+  .category-hero h1 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(72px, 15vw, 200px); line-height: 0.85; letter-spacing: -0.03em; text-transform: uppercase; }
+  .category-hero h1 .accent { color: var(--yellow); position: relative; }
+  .category-hero h1 .accent::after { content: ''; position: absolute; bottom: 12%; left: -2%; width: 104%; height: clamp(8px, 2vw, 20px); background: var(--red); z-index: -1; mix-blend-mode: difference; }
+  .category-hero .tagline { font-family: 'IBM Plex Mono', monospace; font-size: clamp(16px, 2.5vw, 24px); color: var(--cyan); margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .category-intro { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .category-intro h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .category-intro h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+  .category-intro p { font-family: 'Noto Sans SC', sans-serif; font-size: clamp(16px, 2vw, 20px); color: var(--concrete); line-height: 1.8; margin-bottom: 20px; max-width: 800px; }
+  .category-intro .highlight { color: var(--yellow); font-weight: 700; }
+
+  .works-grid { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--black); }
+  .works-grid h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 60px; }
+  .works-grid h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+
+  .works-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
+  .work-item { border: 2px solid var(--grey); background: var(--void); overflow: hidden; }
+  .work-item .image-placeholder { height: 250px; background: var(--black); display: flex; align-items: center; justify-content: center; color: var(--concrete); font-family: 'Space Mono', monospace; font-size: 16px; }
+  .work-item .info { padding: 30px; }
+  .work-item .year { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .work-item h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .work-item p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--concrete); line-height: 1.6; margin-bottom: 20px; }
+  .work-item .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .work-item .tag { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 8px; border: 1px solid var(--cyan); }
+
+  .services { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .services h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .services h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+  .service-card { border: 2px solid var(--grey); padding: 30px; background: var(--black); }
+  .service-card .icon { font-family: 'Anton', sans-serif; font-size: 48px; color: var(--yellow); margin-bottom: 20px; }
+  .service-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .service-card p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--concrete); line-height: 1.6; }
+
+  footer {
+    padding: 40px clamp(16px, 5vw, 60px); background: var(--void);
+    border-top: 6px solid var(--yellow); display: flex; flex-wrap: wrap;
+    justify-content: space-between; gap: 24px; font-size: 12px; color: var(--grey);
+  }
+  footer .col { display: flex; flex-direction: column; gap: 4px; }
+  footer strong { color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; margin-bottom: 8px; }
+  footer a { color: var(--concrete); text-decoration: none; }
+  footer a:hover { color: var(--yellow); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .category-hero h1 { font-size: clamp(48px, 12vw, 80px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ticker-inner { animation: none; } }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>品牌设计</span><span class="sep">●</span>
+    <span>BRANDING</span><span class="sep">●</span>
+    <span>不讨好市场</span><span class="sep">●</span>
+    <span>只做真实表达</span><span class="sep">●</span>
+    <span>品牌设计</span><span class="sep">●</span>
+    <span>BRANDING</span><span class="sep">●</span>
+    <span>不讨好市场</span><span class="sep">●</span>
+    <span>只做真实表达</span><span class="sep">●</span>
+  </div>
+</div>
+
+<nav>
+  <div class="logo"><a href="index.html"><span class="strike">SOFT</span> WANCHEN<br>DESIGN</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html#categories">类目</a></li>
+    <li><a href="index.html#works">作品</a></li>
+    <li><a href="index.html#about">关于</a></li>
+    <li><a href="index.html#contact">联系</a></li>
+  </ul>
+</nav>
+
+<section class="category-hero">
+  <a href="index.html" class="back-link">← 返回首页</a>
+  <h1>品牌<br><span class="accent">设计</span></h1>
+  <p class="tagline">不讨好市场，只做真实表达</p>
+</section>
+
+<section class="category-intro">
+  <h2><span class="num">01</span>关于品牌</h2>
+  <p>品牌设计不是<span class="highlight">画 logo</span>。</p>
+  <p>我们做的品牌设计，是从价值观到视觉语言的<span class="highlight">完整系统</span>。标志、字体、色彩、网格、图像风格、语调——所有这些必须一致地表达品牌的核心。</p>
+  <p>我们只接<span class="highlight">能保持诚实表达</span>的品牌。如果你的品牌需要一个虚假的故事来包装，去找别人。</p>
+  <p>我们的工作成果不是一本品牌手册 PDF，而是一套<span class="highlight">可以自主使用的视觉系统</span>。</p>
+</section>
+
+<section class="works-grid">
+  <h2><span class="num">02</span>作品展示</h2>
+  <div class="works-container">
+    <div class="work-item">
+      <div class="image-placeholder">野草书店品牌重塑</div>
+      <div class="info">
+        <div class="year">2024</div>
+        <h3>野草书店</h3>
+        <p>独立书店品牌重塑。从标志到空间导视，强调纸质阅读的原始触感与思想自由。使用活版印刷风格的字体系统。</p>
+        <div class="tags"><span class="tag">书店</span><span class="tag">标志</span><span class="tag">空间导视</span></div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">独立服装品牌视觉</div>
+      <div class="info">
+        <div class="year">2023</div>
+        <h3>RAW GARMENT</h3>
+        <p>独立服装品牌视觉识别。无性别、无季节、无潮流。使用工业标贴与标签作为核心视觉元素。</p>
+        <div class="tags"><span class="tag">服装</span><span class="tag">无性别</span><span class="tag">工业</span></div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">科技创业品牌系统</div>
+      <div class="info">
+        <div class="year">2024</div>
+        <h3>NULLSPACE</h3>
+        <p>科技创业公司品牌系统。使用命令行美学与等宽字体，将技术诚实注入品牌 DNA。</p>
+        <div class="tags"><span class="tag">科技</span><span class="tag">创业</span><span class="tag">系统</span></div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">精酿品牌视觉延展</div>
+      <div class="info">
+        <div class="year">2023</div>
+        <h3>铁锈精酿</h3>
+        <p>精酿啤酒品牌视觉延展。从瓶身印刷到酒吧空间，保持工业粗野的视觉一致性。</p>
+        <div class="tags"><span class="tag">精酿</span><span class="tag">延展</span><span class="tag">空间</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2><span class="num">03</span>服务范围</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="icon">LOGO</div>
+      <h3>标志设计</h3>
+      <p>不画花哨图标。我们设计能活过 10 年、能在所有介质上清晰呈现的标志系统。</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">VIS</div>
+      <h3>视觉识别系统</h3>
+      <p>色彩、字体、网格、图像风格。一套完整的视觉工具包，不是一本没人翻的品牌手册。</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">APP</div>
+      <h3>应用延展</h3>
+      <p>包装、空间、数字界面、印刷物——品牌在真实世界中的所有触点。</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">GUIDE</div>
+      <h3>品牌策略</h3>
+      <p>定位、命名、语调、价值主张。在画之前，先把话说清楚。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="col"><strong>万晨图影设计</strong><span>深圳市南山区创意路808号</span><span>No.808, Chuangyi Rd, Nanshan, SZ</span></div>
+  <div class="col"><strong>CONTACT</strong><a href="mailto:contact@wanchen.design">contact@wanchen.design</a><span>+86 138-0000-0000</span></div>
+  <div class="col"><strong>HOURS</strong><span>MON—FRI 10:00—20:00</span><span>SAT—SUN 14:00—22:00</span></div>
+  <div class="col"><strong>SOCIAL</strong><a href="#">小红书</a><a href="#">Behance</a><a href="#">Instagram</a></div>
+</footer>
+
+</body>
+</html>

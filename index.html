@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRUTAL BEAN — 粗野咖啡</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;700;900&family=Space+Mono:wght@400;700&family=Anton&display=swap" rel="stylesheet">
+<title>万晨图影设计 — 粗野主义作品集</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;700;900&family=Space+Mono:wght@400;700&family=Anton&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -17,6 +17,7 @@
     --cyan: #00f0ff;
     --grey: #3a3a3a;
     --concrete: #b0b0a8;
+    --magenta: #ff00ff;
   }
 
   html { scroll-behavior: smooth; }
@@ -29,7 +30,6 @@
     line-height: 1.4;
   }
 
-  /* ── RAW GRID TEXTURE ── */
   body::before {
     content: '';
     position: fixed;
@@ -41,518 +41,201 @@
     z-index: 9999;
   }
 
-  /* ── MARQUEE TICKER ── */
-  .ticker {
-    width: 100%;
-    background: var(--yellow);
-    color: var(--void);
-    overflow: hidden;
-    border-top: 4px solid var(--void);
-    border-bottom: 4px solid var(--void);
-    padding: 8px 0;
-  }
-  .ticker-inner {
-    display: flex;
-    gap: 0;
-    animation: ticker 18s linear infinite;
-    white-space: nowrap;
-  }
-  .ticker-inner span {
-    font-family: 'Anton', 'Bebas Neue', sans-serif;
-    font-size: clamp(14px, 2.5vw, 22px);
-    letter-spacing: 0.08em;
-    padding: 0 16px;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
+  .ticker { width: 100%; background: var(--yellow); color: var(--void); overflow: hidden; border-top: 4px solid var(--void); border-bottom: 4px solid var(--void); padding: 8px 0; }
+  .ticker-inner { display: flex; gap: 0; animation: ticker 18s linear infinite; white-space: nowrap; }
+  .ticker-inner span { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(14px, 2.5vw, 22px); letter-spacing: 0.08em; padding: 0 16px; text-transform: uppercase; flex-shrink: 0; }
   .ticker-inner span.sep { color: var(--red); }
   @keyframes ticker { 100% { transform: translateX(-50%); } }
 
-  /* ── NAV ── */
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px clamp(16px, 5vw, 60px);
-    background: var(--void);
-    border-bottom: 3px solid var(--yellow);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(28px, 5vw, 42px);
-    letter-spacing: 0.06em;
-    color: var(--yellow);
-    line-height: 1;
-    text-transform: uppercase;
-  }
-  .logo .strike {
-    text-decoration: line-through;
-    text-decoration-color: var(--red);
-    text-decoration-thickness: 3px;
-    color: var(--white);
-    margin-right: 4px;
-  }
-  .nav-links {
-    display: flex;
-    gap: clamp(16px, 4vw, 40px);
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--white);
-    text-decoration: none;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(14px, 2vw, 20px);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    position: relative;
-    transition: color .15s;
-  }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px clamp(16px, 5vw, 60px); background: var(--void); border-bottom: 3px solid var(--yellow); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 5vw, 42px); letter-spacing: 0.06em; color: var(--yellow); line-height: 1; text-transform: uppercase; }
+  .logo a { color: inherit; text-decoration: none; }
+  .logo .strike { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; color: var(--white); margin-right: 4px; }
+  .nav-links { display: flex; gap: clamp(16px, 4vw, 40px); list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: clamp(14px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; position: relative; transition: color .15s; }
   .nav-links a:hover { color: var(--yellow); }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--red);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .2s;
-  }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
   .nav-links a:hover::after { transform: scaleX(1); }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: clamp(40px, 8vw, 100px) clamp(16px, 5vw, 60px);
-    position: relative;
-    background: var(--void);
-  }
-  .hero-noise {
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    opacity: 0.6;
-    pointer-events: none;
-  }
-  .hero-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(11px, 1.5vw, 14px);
-    color: var(--cyan);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .hero h1 {
-    font-family: 'Anton', 'Bebas Neue', sans-serif;
-    font-size: clamp(64px, 14vw, 180px);
-    line-height: 0.85;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    color: var(--white);
-    position: relative;
-  }
-  .hero h1 .hl {
-    color: var(--yellow);
-    display: inline-block;
-    position: relative;
-  }
-  .hero h1 .hl::after {
-    content: '';
-    position: absolute;
-    bottom: 8%;
-    left: -2%;
-    width: 104%;
-    height: clamp(6px, 1.5vw, 14px);
-    background: var(--red);
-    z-index: -1;
-    mix-blend-mode: difference;
-  }
-  .hero-sub {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(12px, 1.6vw, 16px);
-    color: var(--concrete);
-    max-width: 520px;
-    margin-top: 24px;
-    padding-left: 4px;
-    border-left: 4px solid var(--yellow);
-  }
-  .hero-cta {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 16px 40px;
-    background: var(--yellow);
-    color: var(--void);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(18px, 2.5vw, 24px);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: transform .1s, box-shadow .1s;
-    position: relative;
-  }
-  .hero-cta:hover {
-    transform: translate(4px, -4px);
-    box-shadow: -8px 8px 0 var(--red);
-  }
-  .hero-cta:active { transform: translate(2px, -2px); box-shadow: -4px 4px 0 var(--red); }
+  .hero { padding: clamp(80px, 15vw, 150px) clamp(16px, 5vw, 60px); background: var(--void); position: relative; }
+  .hero h1 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(72px, 15vw, 200px); line-height: 0.85; letter-spacing: -0.03em; text-transform: uppercase; }
+  .hero h1 .accent { color: var(--yellow); position: relative; }
+  .hero h1 .accent::after { content: ''; position: absolute; bottom: 12%; left: -2%; width: 104%; height: clamp(8px, 2vw, 20px); background: var(--red); z-index: -1; mix-blend-mode: difference; }
+  .hero .tagline { font-family: 'IBM Plex Mono', monospace; font-size: clamp(16px, 2.5vw, 24px); color: var(--cyan); margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em; }
 
-  /* ── SECTION TITLES ── */
-  .section-header {
-    padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px) 30px;
-    border-top: 3px solid var(--grey);
-  }
-  .section-header h2 {
-    font-family: 'Anton', 'Bebas Neue', sans-serif;
-    font-size: clamp(42px, 8vw, 100px);
-    line-height: 0.9;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-  }
-  .section-header h2 .num {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(16px, 2.5vw, 28px);
-    color: var(--red);
-    vertical-align: super;
-    margin-right: 8px;
-  }
+  .categories { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .categories h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 60px; }
+  .categories h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
 
-  /* ── PRODUCT GRID ── */
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3px;
-    padding: 0 clamp(16px, 5vw, 60px) clamp(60px, 10vw, 100px);
-    background: var(--void);
-  }
-  .product-card {
-    background: var(--black);
-    border: 2px solid var(--grey);
-    padding: 40px 24px 24px;
-    position: relative;
-    transition: border-color .2s, transform .2s;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-  .product-card:hover {
-    border-color: var(--yellow);
-    transform: translate(4px, -4px);
-    box-shadow: -8px 8px 0 var(--red);
-  }
-  .product-card .idx {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: var(--grey);
-  }
-  .product-card h3 {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(28px, 4vw, 48px);
-    text-transform: uppercase;
-    line-height: 0.95;
-    margin-bottom: 8px;
-  }
-  .product-card h3 .accent { color: var(--yellow); }
-  .product-card .desc {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: 13px;
-    color: var(--concrete);
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
-  .product-card .meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-top: 1px solid var(--grey);
-    padding-top: 16px;
-  }
-  .product-card .price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    color: var(--white);
-    letter-spacing: 0.04em;
-  }
-  .product-card .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    background: var(--yellow);
-    color: var(--void);
-    padding: 3px 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
+  .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+  .category-card { border: 2px solid var(--grey); padding: 40px; background: var(--black); transition: all .3s; cursor: pointer; }
+  .category-card:hover { border-color: var(--yellow); transform: translateY(-8px); }
+  .category-card .icon { font-family: 'Anton', sans-serif; font-size: 48px; color: var(--yellow); margin-bottom: 20px; }
+  .category-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+  .category-card p { font-family: 'Noto Sans SC', sans-serif; font-size: 15px; color: var(--concrete); line-height: 1.7; margin-bottom: 20px; }
+  .category-card .count { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; }
 
-  /* ── MANIFESTO ── */
-  .manifesto {
-    padding: clamp(40px, 8vw, 80px) clamp(16px, 5vw, 60px);
-    background: var(--yellow);
-    color: var(--void);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(24px, 6vw, 80px);
-    align-items: start;
-    cursor: pointer;
-    transition: background .2s, padding-left .2s;
-    position: relative;
-  }
-  .manifesto:hover {
-    background: #d4ed00;
-    padding-left: calc(clamp(16px, 5vw, 60px) + 8px);
-  }
-  .manifesto::after {
-    content: 'READ FULL STORY →';
-    position: absolute;
-    bottom: 24px;
-    right: clamp(16px, 5vw, 60px);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
-    letter-spacing: 0.15em;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity .2s, transform .2s;
-  }
-  .manifesto:hover::after {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .manifesto h2 {
-    font-family: 'Anton', 'Bebas Neue', sans-serif;
-    font-size: clamp(48px, 9vw, 120px);
-    text-transform: uppercase;
-    line-height: 0.85;
-    letter-spacing: -0.02em;
-    word-break: break-all;
-  }
-  .manifesto-text {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: clamp(15px, 2vw, 18px);
-    font-weight: 700;
-    line-height: 1.8;
-  }
-  .manifesto-text p { margin-bottom: 16px; }
-  .manifesto-text .strike {
-    text-decoration: line-through;
-    text-decoration-color: var(--red);
-    text-decoration-thickness: 3px;
-  }
+  .works { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--black); }
+  .works h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 60px; }
+  .works h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
 
-  /* ── CONTRAST BANNER ── */
-  .banner {
-    padding: clamp(30px, 6vw, 60px) clamp(16px, 5vw, 60px);
-    background: var(--red);
-    color: var(--void);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: baseline;
-  }
-  .banner span {
-    font-family: 'Anton', sans-serif;
-    font-size: clamp(36px, 7vw, 80px);
-    text-transform: uppercase;
-    line-height: 0.9;
-  }
-  .banner span.outline {
-    -webkit-text-stroke: 2px var(--void);
-    color: transparent;
-    paint-order: stroke fill;
-  }
+  .works-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+  .work-card { border: 2px solid var(--grey); background: var(--void); overflow: hidden; }
+  .work-card .image-placeholder { height: 200px; background: var(--black); display: flex; align-items: center; justify-content: center; color: var(--concrete); font-family: 'Space Mono', monospace; font-size: 14px; }
+  .work-card .info { padding: 20px; }
+  .work-card .category { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .work-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .work-card p { font-family: 'Noto Sans SC', sans-serif; font-size: 13px; color: var(--concrete); line-height: 1.5; }
 
-  /* ── FOOTER ── */
+  .about { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .about h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .about h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+  .about p { font-family: 'Noto Sans SC', sans-serif; font-size: clamp(16px, 2vw, 20px); color: var(--concrete); line-height: 1.8; margin-bottom: 20px; max-width: 800px; }
+  .about .highlight { color: var(--yellow); font-weight: 700; }
+
+  .contact-banner { padding: clamp(80px, 15vw, 150px) clamp(16px, 5vw, 60px); background: var(--red); color: var(--void); }
+  .contact-banner h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(48px, 9vw, 120px); text-transform: uppercase; line-height: 0.85; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .contact-banner .contact-text { font-family: 'IBM Plex Mono', monospace; font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; line-height: 1.8; }
+  .contact-banner .contact-text p { margin-bottom: 20px; }
+
   footer {
-    padding: 40px clamp(16px, 5vw, 60px);
-    background: var(--void);
-    border-top: 6px solid var(--yellow);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 24px;
-    font-size: 12px;
-    color: var(--grey);
+    padding: 40px clamp(16px, 5vw, 60px); background: var(--void);
+    border-top: 6px solid var(--yellow); display: flex; flex-wrap: wrap;
+    justify-content: space-between; gap: 24px; font-size: 12px; color: var(--grey);
   }
-  footer .col {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  footer strong {
-    color: var(--white);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 16px;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
+  footer .col { display: flex; flex-direction: column; gap: 4px; }
+  footer strong { color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; margin-bottom: 8px; }
   footer a { color: var(--concrete); text-decoration: none; }
   footer a:hover { color: var(--yellow); }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    .manifesto { grid-template-columns: 1fr; }
     .nav-links { display: none; }
     .hero h1 { font-size: clamp(48px, 12vw, 80px); }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .ticker-inner { animation: none; }
-  }
+  @media (prefers-reduced-motion: reduce) { .ticker-inner { animation: none; } }
 </style>
 </head>
 <body>
 
-<!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span>100% ARABICA</span><span class="sep">●</span>
-    <span>DIRECT TRADE</span><span class="sep">●</span>
-    <span>ROASTED TO ORDER</span><span class="sep">●</span>
+    <span>万晨图影设计</span><span class="sep">●</span>
+    <span>BRUTAL DESIGN</span><span class="sep">●</span>
+    <span>插画·海报·包装·品牌</span><span class="sep">●</span>
     <span>NO BULLSHIT</span><span class="sep">●</span>
-    <span>BRUTALLY GOOD</span><span class="sep">●</span>
-    <span>100% ARABICA</span><span class="sep">●</span>
-    <span>DIRECT TRADE</span><span class="sep">●</span>
-    <span>ROASTED TO ORDER</span><span class="sep">●</span>
+    <span>万晨图影设计</span><span class="sep">●</span>
+    <span>BRUTAL DESIGN</span><span class="sep">●</span>
+    <span>插画·海报·包装·品牌</span><span class="sep">●</span>
     <span>NO BULLSHIT</span><span class="sep">●</span>
-    <span>BRUTALLY GOOD</span><span class="sep">●</span>
   </div>
 </div>
 
-<!-- NAV -->
 <nav>
-  <div class="logo"><span class="strike">SOFT</span> BRUTAL<br>BEAN</div>
+  <div class="logo"><a href="#"><span class="strike">SOFT</span> WANCHEN<br>DESIGN</a></div>
   <ul class="nav-links">
-    <li><a href="#products">咖啡</a></li>
-    <li><a href="#manifesto">宣言</a></li>
-    <li><a href="#footer">联系</a></li>
+    <li><a href="#categories">类目</a></li>
+    <li><a href="#works">作品</a></li>
+    <li><a href="#about">关于</a></li>
+    <li><a href="#contact">联系</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-noise"></div>
-  <p class="hero-tag">EST. 2025 · SHENZHEN · 粗野咖啡</p>
-  <h1>
-    COFFEE<br>
-    THAT <span class="hl">HITS</span><br>
-    LIKE A <span class="hl">BRICK</span>
-  </h1>
-  <p class="hero-sub">
-    不讨好、不修饰、不加糖的废话。<br>
-    我们只做一件事：把咖啡豆变成你体内不可抗拒的暴力美学。
-  </p>
-  <a href="#products" class="hero-cta">VIEW PRODUCTS →</a>
+  <h1>万晨<br>图影<span class="accent">设计</span></h1>
+  <p class="tagline">粗野主义设计作品集</p>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="section-header">
-    <h2><span class="num">01</span>THE<br>ARSENAL</h2>
-  </div>
-  <div class="products">
-
-    <a href="product-detail.html" class="product-card">
-      <span class="idx">NO.1</span>
-      <h3>BLACK<span class="accent">OUT</span></h3>
-      <p class="desc">深度烘焙 · 埃塞俄比亚 耶加雪菲<br>烟熏、黑巧克力、焦糖爆击。不是给新手喝的。</p>
-      <div class="meta">
-        <span class="price">¥128</span>
-        <span class="tag">BESTSELLER</span>
-      </div>
-    </a>
-
-    <a href="product-concrete.html" class="product-card">
-      <span class="idx">NO.2</span>
-      <h3>CONCRETE<span class="accent">PUNCH</span></h3>
-      <p class="desc">中深烘焙 · 哥伦比亚 蕙兰<br>坚果、太妃糖、厚实如水泥。早晨一拳打醒你。</p>
-      <div class="meta">
-        <span class="price">¥118</span>
-        <span class="tag">NEW</span>
-      </div>
-    </a>
-
-    <a href="product-neon.html" class="product-card">
-      <span class="idx">NO.3</span>
-      <h3>NEON<span class="accent">DRIP</span></h3>
-      <p class="desc">浅中烘焙 · 肯尼亚 AA<br>莓果、柑橘、明亮酸质。酸得有理有据。</p>
-      <div class="meta">
-        <span class="price">¥138</span>
-        <span class="tag">LIMITED</span>
-      </div>
-    </a>
-
-    <a href="product-raw.html" class="product-card">
-      <span class="idx">NO.4</span>
-      <h3>RAW<span class="accent">FREAK</span></h3>
-      <p class="desc">极浅烘焙 · 巴拿马 瑰夏<br>花香、茶感、复杂到令人发指。给味觉受虐狂。</p>
-      <div class="meta">
-        <span class="price">¥198</span>
-        <span class="tag">PREMIUM</span>
-      </div>
-    </a>
-
+<section class="categories" id="categories">
+  <h2><span class="num">01</span>设计类目</h2>
+  <div class="category-grid">
+    <div class="category-card" onclick="location.href='illustration.html'">
+      <div class="icon">ILL</div>
+      <h3>插画设计</h3>
+      <p>数字插画、概念艺术、角色设计、场景绘制。用粗野线条和强烈色彩表达情绪。</p>
+      <div class="count">12 个项目</div>
+    </div>
+    <div class="category-card" onclick="location.href='poster.html'">
+      <div class="icon">POST</div>
+      <h3>海报设计</h3>
+      <p>活动海报、音乐演出、电影宣传、社会议题。暴力排版与信息层级的直接碰撞。</p>
+      <div class="count">8 个项目</div>
+    </div>
+    <div class="category-card" onclick="location.href='packaging.html'">
+      <div class="icon">PKG</div>
+      <h3>包装设计</h3>
+      <p>产品包装、品牌礼盒、环保材料、结构创新。去掉多余装饰，让包装说话。</p>
+      <div class="count">6 个项目</div>
+    </div>
+    <div class="category-card" onclick="location.href='branding.html'">
+      <div class="icon">BRD</div>
+      <h3>品牌设计</h3>
+      <p>视觉识别、品牌系统、标志设计、应用延展。不讨好市场，只做真实表达。</p>
+      <div class="count">10 个项目</div>
+    </div>
   </div>
 </section>
 
-<!-- MANIFESTO -->
-<a href="story.html" style="text-decoration: none; color: inherit;">
-<section id="manifesto" class="manifesto">
-  <h2>NO<br>SUGAR<br>COAT</h2>
-  <div class="manifesto-text">
-    <p>咖啡行业充斥着太多<span class="strike">精致</span>废话。</p>
-    <p>手冲壶要天鹅颈、滤杯要肋骨纹、水温要精确到0.5°C、闷蒸要30秒——全都是为了让你多付三倍价钱。</p>
-    <p><strong>BRUTAL BEAN</strong> 拒绝这套。</p>
-    <p>我们只关心三件事：豆子从哪里来、烘焙火候对不对、喝下去爽不爽。</p>
-    <p>没有花哨的包装。没有玄学的风味轮。没有咖啡师的围裙表演。</p>
-    <p>粗野，就是我们的态度。</p>
+<section class="works" id="works">
+  <h2><span class="num">02</span>精选作品</h2>
+  <div class="works-grid">
+    <div class="work-card">
+      <div class="image-placeholder">《反叛者》系列插画</div>
+      <div class="info">
+        <div class="category">插画设计</div>
+        <h3>反叛者系列</h3>
+        <p>为独立音乐厂牌创作的系列插画，探讨青年亚文化与社会规训的对抗。</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="image-placeholder">地下电子音乐节海报</div>
+      <div class="info">
+        <div class="category">海报设计</div>
+        <h3>地下电子音乐节</h3>
+        <p>深圳地下音乐场景的视觉表达，用荧光色与噪点模拟电子音乐的能量。</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="image-placeholder">粗野咖啡包装系统</div>
+      <div class="info">
+        <div class="category">包装设计</div>
+        <h3>粗野咖啡</h3>
+        <p>咖啡豆包装系统，使用工业瓦楞纸与丝网印刷，拒绝精致过度包装。</p>
+      </div>
+    </div>
+    <div class="work-card">
+      <div class="image-placeholder">独立书店品牌重塑</div>
+      <div class="info">
+        <div class="category">品牌设计</div>
+        <h3>野草书店</h3>
+        <p>为独立书店打造的品牌系统，强调纸质阅读的原始触感与思想自由。</p>
+      </div>
+    </div>
   </div>
 </section>
-</a>
 
-<!-- BANNER -->
-<div class="banner">
-  <span>DRINK</span>
-  <span class="outline">HARD</span>
-  <span>STAY</span>
-  <span class="outline">RAW</span>
-  <span>DRINK</span>
-  <span class="outline">HARD</span>
-</div>
+<section class="about" id="about">
+  <h2><span class="num">03</span>关于设计</h2>
+  <p>万晨图影设计是一家专注于<span class="highlight">粗野主义设计</span>的独立工作室。</p>
+  <p>我们相信设计应该<span class="highlight">直接、诚实、有力量</span>，而不是装饰性的谎言。</p>
+  <p>在这个过度精致、过度包装的设计行业里，我们选择<span class="highlight">暴力排版、强烈对比、原始质感</span>作为反抗。</p>
+  <p>我们的工作方式：<span class="highlight">不讨好任何人，不包装废话，不编造故事，不隐藏成本，不妥协品质</span>。</p>
+</section>
 
-<!-- FOOTER -->
-<footer id="footer">
-  <div class="col">
-    <strong>BRUTAL BEAN</strong>
-    <span>深圳市南山区粗野路404号</span>
-    <span>No.404, Brutal Rd, Nanshan, SZ</span>
+<section class="contact-banner" id="contact">
+  <h2>CONTACT<br>ME</h2>
+  <div class="contact-text">
+    <p>如果你也厌倦了精致的设计废话</p>
+    <p>如果你需要真实、直接、有力量的设计</p>
+    <p>如果你愿意为品质买单，而不是为故事付费</p>
+    <p>联系我：<a href="mailto:contact@wanchen.design" style="color:var(--void);text-decoration:underline;">contact@wanchen.design</a></p>
   </div>
-  <div class="col">
-    <strong>CONTACT</strong>
-    <a href="mailto:hello@brutalbean.cn">hello@brutalbean.cn</a>
-    <span>+86 755-XXXX-XXXX</span>
-  </div>
-  <div class="col">
-    <strong>HOURS</strong>
-    <span>MON—FRI 07:00—22:00</span>
-    <span>SAT—SUN 08:00—02:00</span>
-  </div>
-  <div class="col">
-    <strong>SOCIAL</strong>
-    <a href="#">小红书</a>
-    <a href="#">微信公众号</a>
-    <a href="#">Instagram</a>
-  </div>
+</section>
+
+<footer>
+  <div class="col"><strong>万晨图影设计</strong><span>深圳市南山区创意路808号</span><span>No.808, Chuangyi Rd, Nanshan, SZ</span></div>
+  <div class="col"><strong>CONTACT</strong><a href="mailto:contact@wanchen.design">contact@wanchen.design</a><span>+86 138-0000-0000</span></div>
+  <div class="col"><strong>HOURS</strong><span>MON—FRI 10:00—20:00</span><span>SAT—SUN 14:00—22:00</span></div>
+  <div class="col"><strong>SOCIAL</strong><a href="#">小红书</a><a href="#">Behance</a><a href="#">Instagram</a></div>
 </footer>
 
 </body>

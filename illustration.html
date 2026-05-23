@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>插画设计 — 万晨图影设计</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;700;900&family=Space+Mono:wght@400;700&family=Anton&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0d0d0d;
+    --void: #000;
+    --white: #f4f4f0;
+    --yellow: #e5ff00;
+    --red: #ff2a2a;
+    --cyan: #00f0ff;
+    --grey: #3a3a3a;
+    --concrete: #b0b0a8;
+    --magenta: #ff00ff;
+  }
+
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .ticker { width: 100%; background: var(--yellow); color: var(--void); overflow: hidden; border-top: 4px solid var(--void); border-bottom: 4px solid var(--void); padding: 8px 0; }
+  .ticker-inner { display: flex; gap: 0; animation: ticker 18s linear infinite; white-space: nowrap; }
+  .ticker-inner span { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(14px, 2.5vw, 22px); letter-spacing: 0.08em; padding: 0 16px; text-transform: uppercase; flex-shrink: 0; }
+  .ticker-inner span.sep { color: var(--red); }
+  @keyframes ticker { 100% { transform: translateX(-50%); } }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px clamp(16px, 5vw, 60px); background: var(--void); border-bottom: 3px solid var(--yellow); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 5vw, 42px); letter-spacing: 0.06em; color: var(--yellow); line-height: 1; text-transform: uppercase; }
+  .logo a { color: inherit; text-decoration: none; }
+  .logo .strike { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; color: var(--white); margin-right: 4px; }
+  .nav-links { display: flex; gap: clamp(16px, 4vw, 40px); list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: clamp(14px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; position: relative; transition: color .15s; }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .category-hero { padding: clamp(80px, 15vw, 150px) clamp(16px, 5vw, 60px); background: var(--void); position: relative; }
+  .category-hero .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; margin-bottom: 30px; }
+  .category-hero .back-link:hover { color: var(--yellow); }
+  .category-hero h1 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(72px, 15vw, 200px); line-height: 0.85; letter-spacing: -0.03em; text-transform: uppercase; }
+  .category-hero h1 .accent { color: var(--yellow); position: relative; }
+  .category-hero h1 .accent::after { content: ''; position: absolute; bottom: 12%; left: -2%; width: 104%; height: clamp(8px, 2vw, 20px); background: var(--red); z-index: -1; mix-blend-mode: difference; }
+  .category-hero .tagline { font-family: 'IBM Plex Mono', monospace; font-size: clamp(16px, 2.5vw, 24px); color: var(--cyan); margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .category-intro { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .category-intro h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .category-intro h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+  .category-intro p { font-family: 'Noto Sans SC', sans-serif; font-size: clamp(16px, 2vw, 20px); color: var(--concrete); line-height: 1.8; margin-bottom: 20px; max-width: 800px; }
+  .category-intro .highlight { color: var(--yellow); font-weight: 700; }
+
+  .works-grid { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--black); }
+  .works-grid h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 60px; }
+  .works-grid h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+
+  .works-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
+  .work-item { border: 2px solid var(--grey); background: var(--void); overflow: hidden; }
+  .work-item .image-placeholder { height: 250px; background: var(--black); display: flex; align-items: center; justify-content: center; color: var(--concrete); font-family: 'Space Mono', monospace; font-size: 16px; }
+  .work-item .info { padding: 30px; }
+  .work-item .year { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .work-item h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .work-item p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--concrete); line-height: 1.6; margin-bottom: 20px; }
+  .work-item .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .work-item .tag { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 8px; border: 1px solid var(--cyan); }
+
+  .process { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .process h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .process h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+  .process-step { border: 2px solid var(--grey); padding: 30px; background: var(--black); }
+  .process-step .step-num { font-family: 'Anton', sans-serif; font-size: 48px; color: var(--yellow); margin-bottom: 20px; }
+  .process-step h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .process-step p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--concrete); line-height: 1.6; }
+
+  footer {
+    padding: 40px clamp(16px, 5vw, 60px); background: var(--void);
+    border-top: 6px solid var(--yellow); display: flex; flex-wrap: wrap;
+    justify-content: space-between; gap: 24px; font-size: 12px; color: var(--grey);
+  }
+  footer .col { display: flex; flex-direction: column; gap: 4px; }
+  footer strong { color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; margin-bottom: 8px; }
+  footer a { color: var(--concrete); text-decoration: none; }
+  footer a:hover { color: var(--yellow); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .category-hero h1 { font-size: clamp(48px, 12vw, 80px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ticker-inner { animation: none; } }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>插画设计</span><span class="sep">●</span>
+    <span>ILLUSTRATION</span><span class="sep">●</span>
+    <span>粗野线条</span><span class="sep">●</span>
+    <span>强烈色彩</span><span class="sep">●</span>
+    <span>插画设计</span><span class="sep">●</span>
+    <span>ILLUSTRATION</span><span class="sep">●</span>
+    <span>粗野线条</span><span class="sep">●</span>
+    <span>强烈色彩</span><span class="sep">●</span>
+  </div>
+</div>
+
+<nav>
+  <div class="logo"><a href="index.html"><span class="strike">SOFT</span> WANCHEN<br>DESIGN</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html#categories">类目</a></li>
+    <li><a href="index.html#works">作品</a></li>
+    <li><a href="index.html#about">关于</a></li>
+    <li><a href="index.html#contact">联系</a></li>
+  </ul>
+</nav>
+
+<section class="category-hero">
+  <a href="index.html" class="back-link">← 返回首页</a>
+  <h1>插画<br><span class="accent">设计</span></h1>
+  <p class="tagline">用粗野线条和强烈色彩表达情绪</p>
+</section>
+
+<section class="category-intro">
+  <h2><span class="num">01</span>关于插画</h2>
+  <p>插画不是装饰，是<span class="highlight">视觉语言</span>。</p>
+  <p>我们拒绝精致细腻的讨好型插画，选择<span class="highlight">粗野线条、强烈对比、原始质感</span>作为表达方式。</p>
+  <p>每一笔都是情绪，每一色都是态度。我们为独立音乐、地下文化、社会议题、个人表达创作插画。</p>
+  <p>工具不重要，<span class="highlight">Procreate、Photoshop、手绘、丝网印刷</span>——我们只用最直接的方式。</p>
+</section>
+
+<section class="works-grid">
+  <h2><span class="num">02</span>作品展示</h2>
+  <div class="works-container">
+    <div class="work-item">
+      <div class="image-placeholder">《反叛者》系列插画</div>
+      <div class="info">
+        <div class="year">2024</div>
+        <h3>反叛者系列</h3>
+        <p>为独立音乐厂牌「噪音抵抗」创作的系列插画，探讨青年亚文化与社会规训的对抗。使用粗线条与荧光色模拟地下音乐现场的能量。</p>
+        <div class="tags">
+          <span class="tag">数字插画</span>
+          <span class="tag">音乐文化</span>
+          <span class="tag">青年亚文化</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">《城市废墟》概念艺术</div>
+      <div class="info">
+        <div class="year">2023</div>
+        <h3>城市废墟</h3>
+        <p>后工业时代城市景观的想象，混凝土、钢筋、涂鸦、废弃工厂的视觉重构。使用拼贴与数字绘画结合。</p>
+        <div class="tags">
+          <span class="tag">概念艺术</span>
+          <span class="tag">城市景观</span>
+          <span class="tag">数字拼贴</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">《身体政治》社会议题插画</div>
+      <div class="info">
+        <div class="year">2024</div>
+        <h3>身体政治</h3>
+        <p>探讨身体自主权、性别规范、社会凝视的系列插画。使用解剖图式线条与强烈色彩对比。</p>
+        <div class="tags">
+          <span class="tag">社会议题</span>
+          <span class="tag">身体政治</span>
+          <span class="tag">丝网印刷</span>
+        </div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">《赛博禅宗》数字冥想</div>
+      <div class="info">
+        <div class="year">2023</div>
+        <h3>赛博禅宗</h3>
+        <p>数字时代的精神困境与冥想实践。将传统禅宗符号与数字故障美学结合。</p>
+        <div class="tags">
+          <span class="tag">数字艺术</span>
+          <span class="tag">精神探索</span>
+          <span class="tag">故障美学</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <h2><span class="num">03</span>创作流程</h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <h3>概念暴力</h3>
+      <p>不写温柔的概念说明，直接画情绪草图。用最粗野的方式把核心想法砸在纸上。</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <h3>线条对抗</h3>
+      <p>拒绝平滑流畅的线条，使用断笔、抖动、重复、叠加。让线条本身成为情绪载体。</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <h3>色彩冲突</h3>
+      <p>不使用和谐色板，选择冲突色、荧光色、工业色。让色彩直接冲击视网膜。</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <h3>质感真实</h3>
+      <p>保留笔触、纹理、噪点、错误。不过度修饰，让画面保持原始的生命力。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="col"><strong>万晨图影设计</strong><span>深圳市南山区创意路808号</span><span>No.808, Chuangyi Rd, Nanshan, SZ</span></div>
+  <div class="col"><strong>CONTACT</strong><a href="mailto:contact@wanchen.design">contact@wanchen.design</a><span>+86 138-0000-0000</span></div>
+  <div class="col"><strong>HOURS</strong><span>MON—FRI 10:00—20:00</span><span>SAT—SUN 14:00—22:00</span></div>
+  <div class="col"><strong>SOCIAL</strong><a href="#">小红书</a><a href="#">Behance</a><a href="#">Instagram</a></div>
+</footer>
+
+</body>
+</html>

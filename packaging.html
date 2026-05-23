@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>包装设计 — 万晨图影设计</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;700;900&family=Space+Mono:wght@400;700&family=Anton&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #0d0d0d;
+    --void: #000;
+    --white: #f4f4f0;
+    --yellow: #e5ff00;
+    --red: #ff2a2a;
+    --cyan: #00f0ff;
+    --grey: #3a3a3a;
+    --concrete: #b0b0a8;
+  }
+
+  html { scroll-behavior: smooth; }
+  
+  body {
+    background: var(--void);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+    line-height: 1.4;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px),
+      repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.01) 2px, rgba(255,255,255,.01) 4px);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .ticker { width: 100%; background: var(--yellow); color: var(--void); overflow: hidden; border-top: 4px solid var(--void); border-bottom: 4px solid var(--void); padding: 8px 0; }
+  .ticker-inner { display: flex; gap: 0; animation: ticker 18s linear infinite; white-space: nowrap; }
+  .ticker-inner span { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(14px, 2.5vw, 22px); letter-spacing: 0.08em; padding: 0 16px; text-transform: uppercase; flex-shrink: 0; }
+  .ticker-inner span.sep { color: var(--red); }
+  @keyframes ticker { 100% { transform: translateX(-50%); } }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px clamp(16px, 5vw, 60px); background: var(--void); border-bottom: 3px solid var(--yellow); position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 5vw, 42px); letter-spacing: 0.06em; color: var(--yellow); line-height: 1; text-transform: uppercase; }
+  .logo a { color: inherit; text-decoration: none; }
+  .logo .strike { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; color: var(--white); margin-right: 4px; }
+  .nav-links { display: flex; gap: clamp(16px, 4vw, 40px); list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-family: 'Bebas Neue', sans-serif; font-size: clamp(14px, 2vw, 20px); letter-spacing: 0.1em; text-transform: uppercase; position: relative; transition: color .15s; }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .2s; }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .category-hero { padding: clamp(80px, 15vw, 150px) clamp(16px, 5vw, 60px); background: var(--void); position: relative; }
+  .category-hero .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--cyan); font-family: 'Space Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; margin-bottom: 30px; }
+  .category-hero .back-link:hover { color: var(--yellow); }
+  .category-hero h1 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(72px, 15vw, 200px); line-height: 0.85; letter-spacing: -0.03em; text-transform: uppercase; }
+  .category-hero h1 .accent { color: var(--yellow); position: relative; }
+  .category-hero h1 .accent::after { content: ''; position: absolute; bottom: 12%; left: -2%; width: 104%; height: clamp(8px, 2vw, 20px); background: var(--red); z-index: -1; mix-blend-mode: difference; }
+  .category-hero .tagline { font-family: 'IBM Plex Mono', monospace; font-size: clamp(16px, 2.5vw, 24px); color: var(--cyan); margin-top: 20px; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .category-intro { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .category-intro h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .category-intro h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+  .category-intro p { font-family: 'Noto Sans SC', sans-serif; font-size: clamp(16px, 2vw, 20px); color: var(--concrete); line-height: 1.8; margin-bottom: 20px; max-width: 800px; }
+  .category-intro .highlight { color: var(--yellow); font-weight: 700; }
+
+  .works-grid { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--black); }
+  .works-grid h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 60px; }
+  .works-grid h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+
+  .works-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
+  .work-item { border: 2px solid var(--grey); background: var(--void); overflow: hidden; }
+  .work-item .image-placeholder { height: 250px; background: var(--black); display: flex; align-items: center; justify-content: center; color: var(--concrete); font-family: 'Space Mono', monospace; font-size: 16px; }
+  .work-item .info { padding: 30px; }
+  .work-item .year { font-family: 'Bebas Neue', sans-serif; font-size: 12px; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .work-item h3 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .work-item p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--concrete); line-height: 1.6; margin-bottom: 20px; }
+  .work-item .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .work-item .tag { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 8px; border: 1px solid var(--cyan); }
+
+  .materials { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); background: var(--void); }
+  .materials h2 { font-family: 'Anton', 'Bebas Neue', sans-serif; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 40px; }
+  .materials h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(16px, 2.5vw, 28px); color: var(--red); vertical-align: super; margin-right: 8px; }
+
+  .materials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+  .material-card { border: 2px solid var(--grey); padding: 30px; background: var(--black); }
+  .material-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+  .material-card p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--concrete); line-height: 1.6; }
+
+  footer {
+    padding: 40px clamp(16px, 5vw, 60px); background: var(--void);
+    border-top: 6px solid var(--yellow); display: flex; flex-wrap: wrap;
+    justify-content: space-between; gap: 24px; font-size: 12px; color: var(--grey);
+  }
+  footer .col { display: flex; flex-direction: column; gap: 4px; }
+  footer strong { color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 0.1em; margin-bottom: 8px; }
+  footer a { color: var(--concrete); text-decoration: none; }
+  footer a:hover { color: var(--yellow); }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .category-hero h1 { font-size: clamp(48px, 12vw, 80px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ticker-inner { animation: none; } }
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>包装设计</span><span class="sep">●</span>
+    <span>PACKAGING</span><span class="sep">●</span>
+    <span>去掉装饰</span><span class="sep">●</span>
+    <span>让包装说话</span><span class="sep">●</span>
+    <span>包装设计</span><span class="sep">●</span>
+    <span>PACKAGING</span><span class="sep">●</span>
+    <span>去掉装饰</span><span class="sep">●</span>
+    <span>让包装说话</span><span class="sep">●</span>
+  </div>
+</div>
+
+<nav>
+  <div class="logo"><a href="index.html"><span class="strike">SOFT</span> WANCHEN<br>DESIGN</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html#categories">类目</a></li>
+    <li><a href="index.html#works">作品</a></li>
+    <li><a href="index.html#about">关于</a></li>
+    <li><a href="index.html#contact">联系</a></li>
+  </ul>
+</nav>
+
+<section class="category-hero">
+  <a href="index.html" class="back-link">← 返回首页</a>
+  <h1>包装<br><span class="accent">设计</span></h1>
+  <p class="tagline">去掉多余装饰，让包装说话</p>
+</section>
+
+<section class="category-intro">
+  <h2><span class="num">01</span>关于包装</h2>
+  <p>过度包装是这个行业的<span class="highlight">癌症</span>。</p>
+  <p>我们设计的包装，不是为了在 Instagram 上好看，而是为了<span class="highlight">保护产品、传递信息、被回收降解</span>。</p>
+  <p>瓦楞纸、铝罐、牛皮纸、木纤维、玻璃——我们只用<span class="highlight">能够被地球消化</span>的材料。</p>
+  <p>丝网印刷、凹凸压印、工业标贴——我们不追求精致，我们追求<span class="highlight">诚实</span>。</p>
+</section>
+
+<section class="works-grid">
+  <h2><span class="num">02</span>作品展示</h2>
+  <div class="works-container">
+    <div class="work-item">
+      <div class="image-placeholder">粗野咖啡包装系统</div>
+      <div class="info">
+        <div class="year">2024</div>
+        <h3>粗野咖啡</h3>
+        <p>咖啡豆包装系统，工业瓦楞纸 + 丝网印刷。所有产地、烘焙信息直接印在包装上，不使用额外标签。</p>
+        <div class="tags"><span class="tag">食品</span><span class="tag">工业</span><span class="tag">丝网印刷</span></div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">天然洗护品牌包装</div>
+      <div class="info">
+        <div class="year">2023</div>
+        <h3>素洗</h3>
+        <p>天然洗护品牌包装系统。铝罐 + 活版印刷，无塑料、可重复灌装、100% 可回收。</p>
+        <div class="tags"><span class="tag">洗护</span><span class="tag">可持续</span><span class="tag">铝罐</span></div>
+      </div>
+    </div>
+    <div class="work-item">
+      <div class="image-placeholder">精酿啤酒包装系列</div>
+      <div class="info">
+        <div class="year">2024</div>
+        <h3>铁锈精酿</h3>
+        <p>精酿啤酒包装系列。手工吹制玻璃瓶 + 直接丝网印刷瓶身，每个瓶子都独一无二。</p>
+        <div class="tags"><span class="tag">酒类</span><span class="tag">玻璃</span><span class="tag">手作</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="materials">
+  <h2><span class="num">03</span>材料哲学</h2>
+  <div class="materials-grid">
+    <div class="material-card">
+      <h3>瓦楞纸</h3>
+      <p>工业感、低成本、100%回收。不漂白、不覆膜、不烫金。纸就该像纸。</p>
+    </div>
+    <div class="material-card">
+      <h3>铝罐</h3>
+      <p>轻量、可无限回收、保护性强。使用原生铝丝网印刷，不贴标。</p>
+    </div>
+    <div class="material-card">
+      <h3>玻璃</h3>
+      <p>可重复使用、不释放化学物质、触感真实。丝网直接印在瓶身，无标签。</p>
+    </div>
+    <div class="material-card">
+      <h3>木纤维</h3>
+      <p>可持续来源、自然纹理、可堆肥。不染色、不涂漆、保留原始质感。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="col"><strong>万晨图影设计</strong><span>深圳市南山区创意路808号</span><span>No.808, Chuangyi Rd, Nanshan, SZ</span></div>
+  <div class="col"><strong>CONTACT</strong><a href="mailto:contact@wanchen.design">contact@wanchen.design</a><span>+86 138-0000-0000</span></div>
+  <div class="col"><strong>HOURS</strong><span>MON—FRI 10:00—20:00</span><span>SAT—SUN 14:00—22:00</span></div>
+  <div class="col"><strong>SOCIAL</strong><a href="#">小红书</a><a href="#">Behance</a><a href="#">Instagram</a></div>
+</footer>
+
+</body>
+</html>

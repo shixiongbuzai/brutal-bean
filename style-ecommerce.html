@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商促销风 — 万晨图影设计</title>
+<meta name="description" content="万晨图影设计 · 电商促销风风格详情页。抢眼、直接、转化率高。高饱和色彩配合大号促销文字，让人一眼看到价格和优惠信息。">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#f5f4f0;--bg-alt:#eae8e3;--text:#1a1a1a;--text-muted:#6b6b6b;
+    --accent:#1a1a1a;--accent-hover:#444;--border:rgba(0,0,0,0.08);
+    --glass-bg:rgba(255,255,255,0.65);--glass-border:rgba(0,0,0,0.06);
+    --glass-shadow:0 2px 20px rgba(0,0,0,0.04);--radius:20px;--radius-sm:12px;
+    --font-sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
+  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{
+    font-family:var(--font-sans);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  .glass-card{
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    box-shadow:var(--glass-shadow);transition:all .3s ease
+  }
+  .glass-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.12)}
+  .nav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;
+    width:calc(100% - 32px);max-width:720px;
+    background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);border-radius:var(--radius-sm);
+    box-shadow:var(--glass-shadow);padding:12px 24px;
+    display:flex;justify-content:space-between;align-items:center
+  }
+  .nav a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+  .nav .back{color:var(--text-muted);font-size:13px}
+  .nav .back:hover{color:var(--accent)}
+  @media(max-width:640px){.nav{padding:10px 16px;top:8px;width:calc(100% - 16px)}}
+
+  .hero{padding:120px 24px 48px;max-width:900px;margin:0 auto;text-align:center}
+  .hero h1{font-size:clamp(36px,7vw,64px);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:12px}
+  .hero .sub{font-size:clamp(14px,1.8vw,17px);color:var(--text-muted);max-width:600px;margin:0 auto 24px;line-height:1.7}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+  .hero .meta span{padding:4px 12px;border-radius:6px;font-size:12px;color:var(--text-muted);background:rgba(0,0,0,0.03);border:1px solid var(--border)}
+  .hero-img{width:100%;max-width:800px;margin:0 auto;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);letter-spacing:0.05em;background:#ff6b35;opacity:0.9}
+
+  .section{max-width:1100px;margin:0 auto;padding:48px 24px}
+  .section-title{font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-0.01em}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.gallery-grid{grid-template-columns:1fr}}
+  .gi-card{padding:10px}
+  .gi-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm);display:block}
+  .gi-fb{display:none}
+  .gi-cap{font-size:11px;color:var(--text-muted);margin-top:6px;text-align:center;letter-spacing:0.03em}
+
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .info-card{padding:20px}
+  .info-card h4{font-size:13px;font-weight:700;margin-bottom:6px}
+  .info-card p{font-size:12px;color:var(--text-muted);line-height:1.7}
+
+  .footer-cta{max-width:480px;margin:60px auto 40px;padding:28px 32px;text-align:center}
+  .footer-cta .fc-text{font-size:14px;color:var(--text-muted);margin-bottom:10px}
+  .footer-cta .fc-contact{font-size:15px;font-weight:600;color:var(--accent)}
+  .site-footer{padding:32px;text-align:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+  @media(max-width:640px){.hero{padding:100px 16px 32px}.section{padding:32px 16px}.footer-cta{margin:40px 16px 32px;padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="nav">
+  <a href="index.html">万晨图影设计</a>
+  <a href="styles.html" class="back">← 设计风格预览</a>
+</div>
+<div class="hero">
+  <h1>电商促销风</h1>
+  <p class="sub">抢眼、直接、转化率高。高饱和色彩配合大号促销文字，让人一眼看到价格和优惠信息。</p>
+  <div class="meta">
+    <span>关键词：高饱和 / 大促销字 / 紧迫感 / 信息密集</span>
+    <span>适合：淘宝、拼多多、直播带货、限时活动</span>
+    <span>物料：电商主图、促销海报、直播背景、详情页头图、banner</span>
+  </div>
+  <div class="hero-img">电商促销风 主视觉</div>
+</div>
+<div class="section">
+  <div class="section-title">样张展示</div>
+  <div class="gallery-grid">
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:1/1;background:#ff6b35;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">电商主图</div>
+        <p class="gi-cap">电商主图 — 淘宝/拼多多</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#ff4500;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">直播海报</div>
+        <p class="gi-cap">直播海报 — 抖音直播预告</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:1/1;background:#ff8c00;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">电商主图</div>
+        <p class="gi-cap">电商主图 — 限时秒杀</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#dc143c;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">活动banner</div>
+        <p class="gi-cap">活动banner — 618/双11</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:1/1;background:#ff6347;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">电商主图</div>
+        <p class="gi-cap">电商主图 — 抖音小店</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#ff4500;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">促销海报</div>
+        <p class="gi-cap">促销海报 — 门店活动</p>
+      </div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">风格说明</div>
+  <div class="info-grid">
+    <div class="info-card glass-card"><h4>风格特点</h4><p>高饱和对比色、大号促销文字、价格突出、紧迫感设计（倒计时/限量标签）。</p></div>
+    <div class="info-card glass-card"><h4>适合场景</h4><p>淘宝/拼多多/抖音小店主图、限时秒杀、双十一/618活动、直播带货。</p></div>
+    <div class="info-card glass-card"><h4>不适合场景</h4><p>高端品牌形象页、奢侈品、B2B企业官网、极简风格品牌。</p></div>
+    <div class="info-card glass-card"><h4>推荐配色</h4><p>橙红、亮黄、荧光绿、电光蓝，高对比撞色，吸引眼球。</p></div>
+    <div class="info-card glass-card"><h4>推荐字体感觉</h4><p>粗黑体或特粗无衬线体，数字要大且醒目，主标题字重极高。</p></div>
+    <div class="info-card glass-card"><h4>可用于哪些物料</h4><p>电商主图、促销海报、直播背景、详情页头图、banner</p></div>
+  </div>
+</div>
+<div class="footer-cta glass-card" id="contact">
+  <p class="fc-text">喜欢这个方向，可以截图或发送风格名称给我们</p>
+  <p class="fc-contact">微信：wctysj</p>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:6px">备注：设计咨询 + 项目类型</p>
+</div>
+<div class="site-footer">© 2024 万晨图影设计</div>
+</body>
+</html>

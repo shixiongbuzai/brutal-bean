@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卡通插画风 — 万晨图影设计</title>
+<meta name="description" content="万晨图影设计 · 卡通插画风风格详情页。轻松、友好、有亲和力。明亮色彩配合扁平化插画，拉近品牌与消费者的距离。">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#f5f4f0;--bg-alt:#eae8e3;--text:#1a1a1a;--text-muted:#6b6b6b;
+    --accent:#1a1a1a;--accent-hover:#444;--border:rgba(0,0,0,0.08);
+    --glass-bg:rgba(255,255,255,0.65);--glass-border:rgba(0,0,0,0.06);
+    --glass-shadow:0 2px 20px rgba(0,0,0,0.04);--radius:20px;--radius-sm:12px;
+    --font-sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
+  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{
+    font-family:var(--font-sans);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  .glass-card{
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    box-shadow:var(--glass-shadow);transition:all .3s ease
+  }
+  .glass-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.06);border-color:rgba(0,0,0,0.12)}
+  .nav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;
+    width:calc(100% - 32px);max-width:720px;
+    background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);border-radius:var(--radius-sm);
+    box-shadow:var(--glass-shadow);padding:12px 24px;
+    display:flex;justify-content:space-between;align-items:center
+  }
+  .nav a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+  .nav .back{color:var(--text-muted);font-size:13px}
+  .nav .back:hover{color:var(--accent)}
+  @media(max-width:640px){.nav{padding:10px 16px;top:8px;width:calc(100% - 16px)}}
+
+  .hero{padding:120px 24px 48px;max-width:900px;margin:0 auto;text-align:center}
+  .hero h1{font-size:clamp(36px,7vw,64px);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:12px}
+  .hero .sub{font-size:clamp(14px,1.8vw,17px);color:var(--text-muted);max-width:600px;margin:0 auto 24px;line-height:1.7}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
+  .hero .meta span{padding:4px 12px;border-radius:6px;font-size:12px;color:var(--text-muted);background:rgba(0,0,0,0.03);border:1px solid var(--border)}
+  .hero-img{width:100%;max-width:800px;margin:0 auto;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);letter-spacing:0.05em;background:#f7e8a0;opacity:0.9}
+
+  .section{max-width:1100px;margin:0 auto;padding:48px 24px}
+  .section-title{font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-0.01em}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.gallery-grid{grid-template-columns:1fr}}
+  .gi-card{padding:10px}
+  .gi-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm);display:block}
+  .gi-fb{display:none}
+  .gi-cap{font-size:11px;color:var(--text-muted);margin-top:6px;text-align:center;letter-spacing:0.03em}
+
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .info-card{padding:20px}
+  .info-card h4{font-size:13px;font-weight:700;margin-bottom:6px}
+  .info-card p{font-size:12px;color:var(--text-muted);line-height:1.7}
+
+  .footer-cta{max-width:480px;margin:60px auto 40px;padding:28px 32px;text-align:center}
+  .footer-cta .fc-text{font-size:14px;color:var(--text-muted);margin-bottom:10px}
+  .footer-cta .fc-contact{font-size:15px;font-weight:600;color:var(--accent)}
+  .site-footer{padding:32px;text-align:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+  @media(max-width:640px){.hero{padding:100px 16px 32px}.section{padding:32px 16px}.footer-cta{margin:40px 16px 32px;padding:24px 20px}}
+</style>
+</head>
+<body>
+<div class="nav">
+  <a href="index.html">万晨图影设计</a>
+  <a href="styles.html" class="back">← 设计风格预览</a>
+</div>
+<div class="hero">
+  <h1>卡通插画风</h1>
+  <p class="sub">轻松、友好、有亲和力。明亮色彩配合扁平化插画，拉近品牌与消费者的距离。</p>
+  <div class="meta">
+    <span>关键词：扁平插画 / 明亮色彩 / 趣味排版 / 亲和力</span>
+    <span>适合：亲子餐厅、零食品牌、教育产品</span>
+    <span>物料：菜单、活动海报、包装、社交媒体、招聘海报</span>
+  </div>
+  <div class="hero-img">卡通插画风 主视觉</div>
+</div>
+<div class="section">
+  <div class="section-title">样张展示</div>
+  <div class="gallery-grid">
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:4/3;background:#f7e8a0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">菜单方向</div>
+        <p class="gi-cap">菜单方向 — 亲子餐厅菜单</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:3/4;background:#a0d8f0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">海报方向</div>
+        <p class="gi-cap">海报方向 — 儿童节活动</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:1/1;background:#f0c8a0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">包装方向</div>
+        <p class="gi-cap">包装方向 — 零食包装袋</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:4/3;background:#c8f0a0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">招聘海报</div>
+        <p class="gi-cap">招聘海报 — 门店招聘</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:1/1;background:#f0a0c8;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">社交媒体</div>
+        <p class="gi-cap">社交媒体 — 小红书图文</p>
+      </div>
+      <div class="gi-card glass-card">
+        <div class="gi-fb" style="width:100%;aspect-ratio:3/4;background:#a0c8f0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">海报方向</div>
+        <p class="gi-cap">海报方向 — 宠物品牌活动</p>
+      </div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">风格说明</div>
+  <div class="info-grid">
+    <div class="info-card glass-card"><h4>风格特点</h4><p>扁平矢量插画、明亮高饱和配色、圆润造型、趣味排版、活泼的视觉节奏。</p></div>
+    <div class="info-card glass-card"><h4>适合场景</h4><p>亲子餐厅、零食品牌、儿童教育、宠物品牌、社区活动、企业内部海报。</p></div>
+    <div class="info-card glass-card"><h4>不适合场景</h4><p>高端商务、金融产品、奢侈品、政府机构、律师事务所。</p></div>
+    <div class="info-card glass-card"><h4>推荐配色</h4><p>明黄、天蓝、草绿、珊瑚粉、暖橙，色彩明快活泼。</p></div>
+    <div class="info-card glass-card"><h4>推荐字体感觉</h4><p>圆体或手写体为主，字形饱满圆润，字号变化大以增加趣味性。</p></div>
+    <div class="info-card glass-card"><h4>可用于哪些物料</h4><p>菜单、活动海报、包装、社交媒体、招聘海报</p></div>
+  </div>
+</div>
+<div class="footer-cta glass-card" id="contact">
+  <p class="fc-text">喜欢这个方向，可以截图或发送风格名称给我们</p>
+  <p class="fc-contact">微信：wctysj</p>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:6px">备注：设计咨询 + 项目类型</p>
+</div>
+<div class="site-footer">© 2024 万晨图影设计</div>
+</body>
+</html>

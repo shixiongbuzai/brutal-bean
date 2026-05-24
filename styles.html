@@ -107,10 +107,11 @@
   @media(max-width:640px){.styles-grid{grid-template-columns:1fr}}
   .style-card{padding:28px 24px;display:flex;flex-direction:column}
   .style-card .sc-img{
-    width:100%;aspect-ratio:4/3;border-radius:var(--radius-sm);margin-bottom:20px;
+    width:100%;aspect-ratio:16/9;border-radius:var(--radius-sm);margin-bottom:20px;
     display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-muted);
     letter-spacing:0.05em;overflow:hidden;position:relative
   }
+  .style-card .sc-img img{width:100%;height:100%;object-fit:cover;display:block}
   .style-card h3{font-size:18px;font-weight:700;margin-bottom:6px}
   .style-card .sc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
   .style-card .sc-tags span{padding:3px 10px;border-radius:6px;font-size:11px;color:var(--text-muted);background:rgba(0,0,0,0.04);border:1px solid var(--border)}
@@ -126,7 +127,7 @@
 <div class="styles-grid">
 
   <div class="glass-card style-card">
-    <div class="sc-img" style="background:#e8e6e1;opacity:0.85">高级极简风 预览</div>
+    <div class="sc-img"><img src="https://res.cloudinary.com/dzcob4flc/image/upload/f_auto,q_auto/wanchen_assets/minimal-hero.png" alt="高级极简风预览" loading="lazy"></div>
     <h3>高级极简风</h3>
     <div class="sc-tags"><span>留白 / 黑白灰 / 大字号 / 高级感</span></div>
     <p class="sc-suit">适合：咖啡、甜品、品牌菜单、包装</p>
@@ -134,7 +135,7 @@
     <a href="style-minimal.html" class="btn-outline">查看该风格</a>
   </div>
   <div class="glass-card style-card">
-    <div class="sc-img" style="background:#1a1a1a;opacity:0.85">深色质感餐饮风 预览</div>
+    <div class="sc-img"><img src="https://res.cloudinary.com/dzcob4flc/image/upload/f_auto,q_auto/wanchen_assets/dark-food-hero.png" alt="深色质感餐饮风预览" loading="lazy"></div>
     <h3>深色质感餐饮风</h3>
     <div class="sc-tags"><span>深色背景 / 食物主图 / 暖光 / 强食欲</span></div>
     <p class="sc-suit">适合：牛肉面、烧肉、火锅、酒馆</p>

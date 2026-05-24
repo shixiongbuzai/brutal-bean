@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例参考 — 万晨图影设计</title>
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#f5f4f0;--bg-alt:#eae8e3;--text:#1a1a1a;--text-muted:#6b6b6b;
+    --accent:#1a1a1a;--accent-hover:#444;--border:rgba(0,0,0,0.08);
+    --glass-bg:rgba(255,255,255,0.65);--glass-border:rgba(0,0,0,0.06);
+    --glass-shadow:0 2px 20px rgba(0,0,0,0.04);--radius:20px;
+    --radius-sm:12px;--font-sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
+    --font-mono:'SF Mono','Cascadia Code','Consolas',monospace;
+  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{
+    font-family:var(--font-sans);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  body::before{
+    content:'';position:fixed;top:-30%;left:-20%;width:60%;height:100%;
+    background:radial-gradient(ellipse,rgba(0,0,0,0.015) 0%,transparent 70%);
+    pointer-events:none;z-index:0
+  }
+  body::after{
+    content:'';position:fixed;bottom:-20%;right:-15%;width:50%;height:80%;
+    background:radial-gradient(ellipse,rgba(0,0,0,0.01) 0%,transparent 70%);
+    pointer-events:none;z-index:0
+  }
+
+  /* Nav */
+  .nav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;
+    width:calc(100% - 32px);max-width:720px;
+    background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);border-radius:var(--radius-sm);
+    box-shadow:var(--glass-shadow);padding:12px 24px;
+    display:flex;justify-content:space-between;align-items:center
+  }
+  .nav-brand{font-weight:700;font-size:15px;letter-spacing:-0.01em;color:var(--accent);text-decoration:none}
+  .nav-links{display:flex;gap:24px;list-style:none}
+  .nav-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color .2s;letter-spacing:0.02em}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:640px){
+    .nav{padding:10px 16px;top:8px;width:calc(100% - 16px)}
+    .nav-brand{font-size:13px}
+    .nav-links{gap:12px}
+    .nav-links a{font-size:11px}
+  }
+
+  /* Footer */
+  .footer-cta{
+    max-width:480px;margin:80px auto 40px;padding:28px 32px;
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    box-shadow:var(--glass-shadow);text-align:center
+  }
+  .footer-cta .fc-text{font-size:14px;color:var(--text-muted);margin-bottom:12px;line-height:1.7}
+  .footer-cta .fc-contact{font-size:15px;font-weight:600;color:var(--accent);letter-spacing:0.03em}
+  .site-footer{padding:32px;text-align:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+  @media(max-width:640px){.footer-cta{margin:48px 16px 32px;padding:24px 20px}}
+
+  /* Buttons */
+  .btn-primary{
+    display:inline-block;padding:12px 28px;background:var(--accent);color:#fff;
+    border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;
+    letter-spacing:0.02em;transition:all .25s;border:none;cursor:pointer
+  }
+  .btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+  .btn-outline{
+    display:inline-block;padding:10px 24px;background:transparent;color:var(--accent);
+    border:1.5px solid var(--accent);border-radius:10px;font-size:13px;
+    font-weight:500;text-decoration:none;letter-spacing:0.02em;transition:all .25s
+  }
+  .btn-outline:hover{background:var(--accent);color:#fff}
+
+  /* Glass card base */
+  .glass-card{
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    box-shadow:var(--glass-shadow);transition:all .3s ease
+  }
+  .glass-card:hover{
+    transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.08);
+    border-color:rgba(0,0,0,0.14)
+  }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a href="index.html" class="nav-brand">万晨图影设计</a>
+  <ul class="nav-links">
+    <li><a href="styles.html">设计风格预览</a></li>
+    <li><a href="cases.html">案例参考</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+</div>
+
+<style>
+  .cases-hero{padding:140px 24px 40px;text-align:center;max-width:720px;margin:0 auto}
+  .cases-hero h1{font-size:clamp(32px,6vw,56px);font-weight:900;letter-spacing:-0.03em;margin-bottom:12px}
+  .cases-hero p{font-size:clamp(14px,1.8vw,17px);color:var(--text-muted);line-height:1.8}
+  .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto;padding:0 24px 80px}
+  @media(max-width:900px){.cases-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.cases-grid{grid-template-columns:1fr}}
+  .case-card{padding:28px 24px;display:flex;flex-direction:column}
+  .case-card .cc-img{
+    width:100%;aspect-ratio:4/3;border-radius:var(--radius-sm);margin-bottom:20px;
+    display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-muted);
+    letter-spacing:0.05em;overflow:hidden;position:relative
+  }
+  .case-card h3{font-size:18px;font-weight:700;margin-bottom:6px}
+  .case-card .cc-fit{font-size:12px;color:var(--text-muted);margin-bottom:10px;line-height:1.6}
+  .case-card .cc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+  .case-card .cc-tags span{padding:3px 10px;border-radius:6px;font-size:11px;color:var(--text-muted);background:rgba(0,0,0,0.04);border:1px solid var(--border)}
+  .case-card .btn-outline{align-self:flex-start;font-size:12px}
+</style>
+
+<div class="cases-hero">
+  <h1>案例参考</h1>
+  <p>根据实际用途查看设计效果，方便确认尺寸、信息层级和最终呈现方式。</p>
+</div>
+<div class="cases-grid">
+
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#f0ece6;opacity:0.85">菜单设计 示例</div>
+    <h3>菜单设计</h3>
+    <p class="cc-fit">适合门店点餐、外卖展示、A4打印、双语菜单</p>
+    <div class="cc-tags"><span>深色质感 / 高级极简 / 国潮中式</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#e8e0d8;opacity:0.85">餐饮海报 示例</div>
+    <h3>餐饮海报</h3>
+    <p class="cc-fit">适合新品推荐、套餐活动、扫码加好友、节日促销</p>
+    <div class="cc-tags"><span>电商促销 / 深色质感 / 复古手绘</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#ffe8d6;opacity:0.85">电商主图 示例</div>
+    <h3>电商主图</h3>
+    <p class="cc-fit">适合淘宝、拼多多、抖音小店、直播活动</p>
+    <div class="cc-tags"><span>电商促销 / 高级极简 / 科技未来</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#e0e8e0;opacity:0.85">包装设计 示例</div>
+    <h3>包装设计</h3>
+    <p class="cc-fit">适合咖啡袋、食品包装、贴纸、礼盒</p>
+    <div class="cc-tags"><span>高级极简 / 日系清新 / 复古手绘</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#e6e6ea;opacity:0.85">品牌物料 示例</div>
+    <h3>品牌物料</h3>
+    <p class="cc-fit">适合 Logo、名片、门头、基础 VI、社群头像</p>
+    <div class="cc-tags"><span>高级极简 / 国潮中式 / 科技未来</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#d6e0f0;opacity:0.85">招聘海报 示例</div>
+    <h3>招聘海报</h3>
+    <p class="cc-fit">适合门店招聘、岗位汇总、企业招聘</p>
+    <div class="cc-tags"><span>高级极简 / 电商促销</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#1a1a2e;opacity:0.85">小说封面 示例</div>
+    <h3>小说封面</h3>
+    <p class="cc-fit">适合番茄网文、男频、女频、修仙、末世、科幻</p>
+    <div class="cc-tags"><span>科技未来 / 国潮中式 / 深色质感</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div>
+  <div class="glass-card case-card">
+    <div class="cc-img" style="background:#0d0d1a;opacity:0.85">AI视频视觉 示例</div>
+    <h3>AI视频视觉</h3>
+    <p class="cc-fit">适合分镜、角色设定、场景风格图、短片视觉方向</p>
+    <div class="cc-tags"><span>科技未来 / 深色质感 / 卡通插画</span></div>
+    <a href="#contact" class="btn-outline">查看详情</a>
+  </div></div>
+<div class="footer-cta" id="contact">
+  <p class="fc-text">确定风格后，把风格名称或案例截图发给我们即可开始沟通</p>
+  <p class="fc-contact">微信：wctysj</p>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:6px">备注：设计咨询 + 项目类型</p>
+</div>
+<div class="site-footer">© 2024 万晨图影设计</div>
+</body></html>

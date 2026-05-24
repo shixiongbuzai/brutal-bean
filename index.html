@@ -3,644 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>万晨图影设计 — AI 驱动的直觉美学作品集</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+SC:wght@400;700;900&family=Space+Mono:wght@400;700&family=Anton&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>万晨图影设计 — 视觉参考库</title>
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-  :root {
-    --bg-deep: #0a0a1a;
-    --bg-mid: #12122a;
-    --glass-bg: rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-hover: rgba(255, 255, 255, 0.08);
-    --accent-1: #a78bfa;
-    --accent-2: #60a5fa;
-    --accent-3: #f472b6;
-    --accent-gold: #fbbf24;
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --gradient-hero: linear-gradient(135deg, #0f0c29 0%, #1a1a3e 40%, #24243e 100%);
-    --gradient-section: linear-gradient(180deg, #0f0c29 0%, #1a1a3e 50%, #16213e 100%);
-    --gradient-contact: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#f5f4f0;--bg-alt:#eae8e3;--text:#1a1a1a;--text-muted:#6b6b6b;
+    --accent:#1a1a1a;--accent-hover:#444;--border:rgba(0,0,0,0.08);
+    --glass-bg:rgba(255,255,255,0.65);--glass-border:rgba(0,0,0,0.06);
+    --glass-shadow:0 2px 20px rgba(0,0,0,0.04);--radius:20px;
+    --radius-sm:12px;--font-sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
+    --font-mono:'SF Mono','Cascadia Code','Consolas',monospace;
+  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{
+    font-family:var(--font-sans);background:var(--bg);color:var(--text);
+    line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden
+  }
+  body::before{
+    content:'';position:fixed;top:-30%;left:-20%;width:60%;height:100%;
+    background:radial-gradient(ellipse,rgba(0,0,0,0.015) 0%,transparent 70%);
+    pointer-events:none;z-index:0
+  }
+  body::after{
+    content:'';position:fixed;bottom:-20%;right:-15%;width:50%;height:80%;
+    background:radial-gradient(ellipse,rgba(0,0,0,0.01) 0%,transparent 70%);
+    pointer-events:none;z-index:0
   }
 
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--gradient-hero);
-    background-attachment: fixed;
-    color: var(--text-primary);
-    font-family: 'Noto Sans SC', 'Space Mono', monospace;
-    overflow-x: hidden;
-    line-height: 1.5;
-    min-height: 100vh;
+  /* Nav */
+  .nav{
+    position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;
+    width:calc(100% - 32px);max-width:720px;
+    background:var(--glass-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--glass-border);border-radius:var(--radius-sm);
+    box-shadow:var(--glass-shadow);padding:12px 24px;
+    display:flex;justify-content:space-between;align-items:center
+  }
+  .nav-brand{font-weight:700;font-size:15px;letter-spacing:-0.01em;color:var(--accent);text-decoration:none}
+  .nav-links{display:flex;gap:24px;list-style:none}
+  .nav-links a{color:var(--text-muted);text-decoration:none;font-size:13px;transition:color .2s;letter-spacing:0.02em}
+  .nav-links a:hover{color:var(--accent)}
+  @media(max-width:640px){
+    .nav{padding:10px 16px;top:8px;width:calc(100% - 16px)}
+    .nav-brand{font-size:13px}
+    .nav-links{gap:12px}
+    .nav-links a{font-size:11px}
   }
 
-  .ticker {
-    width: 100%;
-    background: rgba(15, 12, 41, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    color: var(--accent-1);
-    overflow: hidden;
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
-    padding: 10px 0;
+  /* Footer */
+  .footer-cta{
+    max-width:480px;margin:80px auto 40px;padding:28px 32px;
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    box-shadow:var(--glass-shadow);text-align:center
   }
-  .ticker-inner { display: flex; gap: 0; animation: ticker 18s linear infinite; white-space: nowrap; }
-  .ticker-inner span { font-family: 'Space Mono', monospace; font-size: clamp(12px, 2vw, 16px); letter-spacing: 0.12em; padding: 0 18px; flex-shrink: 0; opacity: 0.85; }
-  .ticker-inner span.sep { color: var(--accent-3); opacity: 0.6; }
-  @keyframes ticker { 100% { transform: translateX(-50%); } }
+  .footer-cta .fc-text{font-size:14px;color:var(--text-muted);margin-bottom:12px;line-height:1.7}
+  .footer-cta .fc-contact{font-size:15px;font-weight:600;color:var(--accent);letter-spacing:0.03em}
+  .site-footer{padding:32px;text-align:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
+  @media(max-width:640px){.footer-cta{margin:48px 16px 32px;padding:24px 20px}}
 
-  nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 16px clamp(16px, 5vw, 60px);
-    background: rgba(10, 10, 30, 0.75);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--glass-border);
-    position: sticky; top: 0; z-index: 100;
+  /* Buttons */
+  .btn-primary{
+    display:inline-block;padding:12px 28px;background:var(--accent);color:#fff;
+    border-radius:10px;font-size:14px;font-weight:600;text-decoration:none;
+    letter-spacing:0.02em;transition:all .25s;border:none;cursor:pointer
   }
-  .logo { font-family: 'Space Mono', monospace; font-size: clamp(20px, 4vw, 28px); letter-spacing: 0.04em; color: var(--accent-1); line-height: 1; font-weight: 700; }
-  .logo a { color: inherit; text-decoration: none; }
-  .logo .strike { text-decoration: none; color: var(--text-secondary); margin-right: 4px; opacity: 0.4; }
-  .nav-links { display: flex; gap: clamp(16px, 4vw, 40px); list-style: none; }
-  .nav-links a { color: var(--text-secondary); text-decoration: none; font-family: 'Space Mono', monospace; font-size: clamp(12px, 1.8vw, 16px); letter-spacing: 0.08em; text-transform: uppercase; position: relative; transition: color .3s; }
-  .nav-links a:hover { color: var(--accent-1); }
-  .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-1), var(--accent-3)); border-radius: 1px; transform: scaleX(0); transform-origin: left; transition: transform .3s; }
-  .nav-links a:hover::after { transform: scaleX(1); }
+  .btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+  .btn-outline{
+    display:inline-block;padding:10px 24px;background:transparent;color:var(--accent);
+    border:1.5px solid var(--accent);border-radius:10px;font-size:13px;
+    font-weight:500;text-decoration:none;letter-spacing:0.02em;transition:all .25s
+  }
+  .btn-outline:hover{background:var(--accent);color:#fff}
 
-  .hero {
-    padding: clamp(80px, 15vw, 150px) clamp(16px, 5vw, 60px);
-    position: relative;
-    overflow: hidden;
+  /* Glass card base */
+  .glass-card{
+    background:var(--glass-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid var(--glass-border);border-radius:var(--radius);
+    box-shadow:var(--glass-shadow);transition:all .3s ease
   }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%; right: -20%;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
+  .glass-card:hover{
+    transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,0.08);
+    border-color:rgba(0,0,0,0.14)
   }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -30%; left: -10%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(244, 114, 182, 0.1) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .hero h1 {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: clamp(72px, 14vw, 180px);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    font-weight: 900;
-    position: relative;
-    z-index: 1;
-    background: linear-gradient(135deg, #e2e8f0 0%, #c4b5fd 40%, #93c5fd 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero h1 .accent {
-    background: linear-gradient(135deg, #a78bfa 0%, #f472b6 60%, #60a5fa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero .tagline {
-    font-family: 'Space Mono', monospace;
-    font-size: clamp(14px, 2vw, 20px);
-    color: var(--text-secondary);
-    margin-top: 24px;
-    letter-spacing: 0.06em;
-    position: relative;
-    z-index: 1;
-  }
-
-  .categories { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); position: relative; }
-  .categories h2 { font-family: 'Noto Sans SC', sans-serif; font-weight: 900; font-size: clamp(36px, 7vw, 80px); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 60px; color: var(--text-primary); }
-  .categories h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(14px, 2vw, 24px); color: var(--accent-1); vertical-align: super; margin-right: 10px; font-weight: 400; }
-
-  .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-  .category-card {
-    border: 1px solid var(--glass-border);
-    padding: 36px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-radius: 16px;
-    transition: all .4s;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .category-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(167, 139, 250, 0.08), rgba(96, 165, 250, 0.04));
-    opacity: 0.3;
-    transition: opacity .4s;
-  }
-  .category-card:hover { border-color: rgba(167, 139, 250, 0.4); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(167, 139, 250, 0.1); }
-  .category-card:hover::before { opacity: 1; }
-  .category-card .icon { font-family: 'Space Mono', monospace; font-size: 36px; font-weight: 700; color: var(--accent-1); margin-bottom: 20px; position: relative; z-index: 1; }
-  .category-card h3 { font-family: 'Noto Sans SC', sans-serif; font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; position: relative; z-index: 1; }
-  .category-card p { font-family: 'Noto Sans SC', sans-serif; font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; position: relative; z-index: 1; }
-  .category-card .count { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.1em; position: relative; z-index: 1; }
-
-  /* === 作品集横向滚动区域 === */
-  .works { padding: clamp(60px, 10vw, 100px) 0; background: rgba(10, 10, 30, 0.3); position: relative; overflow: hidden; }
-  .works h2 { font-family: 'Noto Sans SC', sans-serif; font-weight: 900; font-size: clamp(36px, 7vw, 80px); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 20px; color: var(--text-primary); padding: 0 clamp(16px, 5vw, 60px); }
-  .works h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(14px, 2vw, 24px); color: var(--accent-3); vertical-align: super; margin-right: 10px; font-weight: 400; }
-
-  .series-section { margin-bottom: clamp(48px, 8vw, 80px); }
-  .series-section:last-child { margin-bottom: 0; }
-  .series-header {
-    display: flex; align-items: baseline; gap: 16px;
-    padding: 0 clamp(16px, 5vw, 60px);
-    margin-bottom: 24px;
-  }
-  .series-header h3 {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: clamp(22px, 4vw, 36px);
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-  .series-header .badge {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: var(--accent-1);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 4px 12px;
-    border: 1px solid rgba(167, 139, 250, 0.3);
-    border-radius: 20px;
-    background: rgba(167, 139, 250, 0.06);
-  }
-
-  .scroll-row {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding: 0 clamp(16px, 5vw, 60px) 12px;
-    cursor: grab;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(167, 139, 250, 0.3) transparent;
-  }
-  .scroll-row::-webkit-scrollbar { height: 4px; }
-  .scroll-row::-webkit-scrollbar-track { background: transparent; }
-  .scroll-row::-webkit-scrollbar-thumb { background: rgba(167, 139, 250, 0.3); border-radius: 2px; }
-  .scroll-row::-webkit-scrollbar-thumb:hover { background: rgba(167, 139, 250, 0.6); }
-  .scroll-row:active { cursor: grabbing; }
-
-  .photo-card {
-    flex-shrink: 0;
-    width: clamp(260px, 30vw, 360px);
-    scroll-snap-align: start;
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all .3s;
-    cursor: pointer;
-  }
-  .photo-card:hover {
-    border-color: rgba(167, 139, 250, 0.4);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(167, 139, 250, 0.12);
-  }
-  .photo-card .card-img {
-    width: 100%;
-    height: clamp(240px, 28vw, 320px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Mono', monospace;
-    font-size: 14px;
-    color: var(--text-secondary);
-    position: relative;
-    overflow: hidden;
-  }
-  .photo-card .card-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10,10,30,0.6) 0%, transparent 40%);
-  }
-  .photo-card .card-img span {
-    position: relative;
-    z-index: 1;
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  }
-  .photo-card .card-info {
-    padding: 16px 20px;
-  }
-  .photo-card .card-info .card-title {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-  }
-  .photo-card .card-info .card-sub {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: var(--text-secondary);
-    letter-spacing: 0.06em;
-  }
-
-  /* === Lightbox === */
-  .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(5, 5, 20, 0.92);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn .3s ease;
-  }
-  .lightbox.active { display: flex; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-  .lightbox .lb-close {
-    position: absolute;
-    top: 24px; right: 32px;
-    width: 44px; height: 44px;
-    border: 1px solid var(--glass-border);
-    border-radius: 50%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    color: var(--text-primary);
-    font-size: 24px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all .3s;
-    z-index: 10;
-    line-height: 1;
-  }
-  .lightbox .lb-close:hover { border-color: rgba(167, 139, 250, 0.6); color: var(--accent-1); }
-
-  .lightbox .lb-content {
-    max-width: min(85vw, 800px);
-    text-align: center;
-    animation: zoomIn .35s ease;
-  }
-  @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
-  .lightbox .lb-img {
-    width: 100%;
-    aspect-ratio: 4/3;
-    border-radius: 16px;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .lightbox .lb-img span {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: clamp(24px, 5vw, 48px);
-    font-weight: 900;
-    color: var(--text-primary);
-    text-shadow: 0 4px 16px rgba(0,0,0,0.4);
-    position: relative;
-    z-index: 1;
-  }
-  .lightbox .lb-title {
-    font-family: 'Noto Sans SC', sans-serif;
-    font-size: clamp(18px, 3vw, 28px);
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-  .lightbox .lb-desc {
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    color: var(--text-secondary);
-    letter-spacing: 0.04em;
-  }
-
-  .about { padding: clamp(60px, 10vw, 100px) clamp(16px, 5vw, 60px); position: relative; }
-  .about h2 { font-family: 'Noto Sans SC', sans-serif; font-weight: 900; font-size: clamp(36px, 7vw, 80px); line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 40px; color: var(--text-primary); }
-  .about h2 .num { font-family: 'Space Mono', monospace; font-size: clamp(14px, 2vw, 24px); color: var(--accent-gold); vertical-align: super; margin-right: 10px; font-weight: 400; }
-  .about p { font-family: 'Noto Sans SC', sans-serif; font-size: clamp(15px, 1.8vw, 19px); color: var(--text-secondary); line-height: 1.9; margin-bottom: 24px; max-width: 800px; }
-  .about .highlight { color: var(--accent-1); font-weight: 700; background: linear-gradient(135deg, var(--accent-1), var(--accent-3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-  .contact-banner {
-    padding: clamp(80px, 15vw, 140px) clamp(16px, 5vw, 60px);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-banner::before {
-    content: '';
-    position: absolute;
-    top: -40%; right: -10%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
-    border-radius: 50%;
-  }
-  .contact-banner h2 { font-family: 'Space Mono', monospace; font-weight: 700; font-size: clamp(42px, 8vw, 100px); line-height: 0.9; letter-spacing: -0.02em; margin-bottom: 40px; color: rgba(255, 255, 255, 0.95); position: relative; z-index: 1; }
-  .contact-banner .contact-text { font-family: 'Noto Sans SC', sans-serif; font-size: clamp(16px, 2vw, 22px); font-weight: 400; line-height: 1.9; position: relative; z-index: 1; color: rgba(255, 255, 255, 0.85); }
-  .contact-banner .contact-text p { margin-bottom: 16px; }
-
-  footer {
-    padding: 40px clamp(16px, 5vw, 60px);
-    background: rgba(10, 10, 30, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--glass-border);
-    display: flex; flex-wrap: wrap;
-    justify-content: space-between; gap: 24px;
-    font-size: 12px; color: var(--text-secondary);
-  }
-  footer .col { display: flex; flex-direction: column; gap: 6px; }
-  footer strong { color: var(--text-primary); font-family: 'Space Mono', monospace; font-size: 14px; letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 700; }
-  footer a { color: var(--text-secondary); text-decoration: none; transition: color .3s; }
-  footer a:hover { color: var(--accent-1); }
-
-  @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero h1 { font-size: clamp(48px, 12vw, 72px); }
-    .photo-card { width: 220px; }
-    .photo-card .card-img { height: 200px; }
-  }
-  @media (prefers-reduced-motion: reduce) { .ticker-inner { animation: none; } }
 </style>
 </head>
 <body>
-
-<div class="ticker">
-  <div class="ticker-inner">
-    <span>万晨图影设计</span><span class="sep">●</span>
-    <span>万晨图影 · AI 设计实验室 · 插画 · 海报 · 包装 · 品牌</span><span class="sep">●</span>
-    <span>插画·海报·包装·品牌</span><span class="sep">●</span>
-    <span>NO BULLSHIT</span><span class="sep">●</span>
-    <span>万晨图影设计</span><span class="sep">●</span>
-    <span>万晨图影 · AI 设计实验室 · 插画 · 海报 · 包装 · 品牌</span><span class="sep">●</span>
-    <span>插画·海报·包装·品牌</span><span class="sep">●</span>
-    <span>NO BULLSHIT</span><span class="sep">●</span>
-  </div>
-</div>
-
-<nav>
-  <div class="logo"><a href="#"><span class="strike">SOFT</span> WANCHEN<br>DESIGN</a></div>
+<div class="nav">
+  <a href="index.html" class="nav-brand">万晨图影设计</a>
   <ul class="nav-links">
-    <li><a href="#categories">类目</a></li>
-    <li><a href="#works">作品</a></li>
-    <li><a href="#about">关于</a></li>
+    <li><a href="styles.html">设计风格预览</a></li>
+    <li><a href="cases.html">案例参考</a></li>
     <li><a href="#contact">联系</a></li>
   </ul>
-</nav>
-
-<section class="hero">
-  <h1>万晨图影<br><span class="accent">设计</span></h1>
-  <p class="tagline">万晨图影设计 AI 驱动的直觉美学作品集</p>
-</section>
-
-<section class="categories" id="categories">
-  <h2><span class="num">01</span>设计类目</h2>
-  <div class="category-grid">
-    <div class="category-card" onclick="location.href='illustration.html'">
-      <div class="icon">ILL</div>
-      <h3>插画设计</h3>
-      <p>数字插画、概念艺术、角色设计、场景绘制。算法生成与大胆线条的碰撞，表达无法被定义的情绪。</p>
-      <div class="count">12 个项目</div>
-    </div>
-    <div class="category-card" onclick="location.href='poster.html'">
-      <div class="icon">POST</div>
-      <h3>海报设计</h3>
-      <p>活动海报、音乐演出、电影宣传、社会议题。直率排版 × 智能构图，让信息直击眼球。</p>
-      <div class="count">8 个项目</div>
-    </div>
-    <div class="category-card" onclick="location.href='packaging.html'">
-      <div class="icon">PKG</div>
-      <h3>包装设计</h3>
-      <p>产品包装、品牌礼盒、环保材料、结构创新。AI 探索形态，去掉多余装饰，让包装自己说话。</p>
-      <div class="count">6 个项目</div>
-    </div>
-    <div class="category-card" onclick="location.href='branding.html'">
-      <div class="icon">BRD</div>
-      <h3>品牌设计</h3>
-      <p>视觉识别、品牌系统、标志设计、应用延展。数据洞察 × 真实表达，不讨好，只做对的设计。</p>
-      <div class="count">10 个项目</div>
-    </div>
-  </div>
-</section>
-
-<section class="works" id="works">
-  <h2><span class="num">02</span>精选作品</h2>
-
-  <!-- 电商设计系列 -->
-  <div class="series-section">
-    <div class="series-header">
-      <h3>电商设计系列</h3>
-      <span class="badge">海报设计</span>
-    </div>
-    <div class="scroll-row" id="row-ecom">
-      <div class="photo-card" onclick="openLightbox(this)" data-title="618主视觉" data-desc="电商设计 · 年中大促视觉">
-        <div class="card-img" style="background:linear-gradient(135deg,#1a2e3d,#2e1a4a,#3d1e5c)"><span>618主视觉</span></div>
-        <div class="card-info"><div class="card-title">618主视觉</div><div class="card-sub">大促 · 主KV</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="双11活动页" data-desc="电商设计 · 双十一会场">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d1a1a,#4a2e1e,#5c3d1e)"><span>双11活动页</span></div>
-        <div class="card-info"><div class="card-title">双11活动页</div><div class="card-sub">会场 · Banner</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="品牌日Banner" data-desc="电商设计 · 品牌日专题">
-        <div class="card-img" style="background:linear-gradient(135deg,#1e3d1e,#2e4a2e,#1e5c1e)"><span>品牌日Banner</span></div>
-        <div class="card-info"><div class="card-title">品牌日Banner</div><div class="card-sub">品牌 · 专题</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="直播海报" data-desc="电商设计 · 直播间视觉">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d2e3d,#4a2e4a,#5c3d5c)"><span>直播海报</span></div>
-        <div class="card-info"><div class="card-title">直播海报</div><div class="card-sub">直播 · 引流</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="详情页设计" data-desc="电商设计 · 产品详情长图">
-        <div class="card-img" style="background:linear-gradient(135deg,#1e2e3d,#2e3d4a,#3d4a5c)"><span>详情页设计</span></div>
-        <div class="card-info"><div class="card-title">详情页设计</div><div class="card-sub">产品 · 长图</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 牛肉面馆系列 -->
-  <div class="series-section">
-    <div class="series-header">
-      <h3>牛肉面馆系列</h3>
-      <span class="badge">插画设计</span>
-    </div>
-    <div class="scroll-row" id="row-beef">
-      <div class="photo-card" onclick="openLightbox(this)" data-title="Logo设计" data-desc="牛肉面馆 · 传统与现代的碰撞">
-        <div class="card-img" style="background:linear-gradient(135deg,#1a1a2e,#3d2e1e,#5c3a1e)"><span>Logo设计</span></div>
-        <div class="card-info"><div class="card-title">Logo设计</div><div class="card-sub">标志 · 字体</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="VI系统" data-desc="牛肉面馆 · 全套视觉识别">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d2e1e,#1a1a2e,#5c4a2e)"><span>VI系统</span></div>
-        <div class="card-info"><div class="card-title">VI系统</div><div class="card-sub">视觉 · 规范</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="空间导视" data-desc="牛肉面馆 · 店面视觉系统">
-        <div class="card-img" style="background:linear-gradient(135deg,#2e1a1a,#3d2e2e,#4a2e1e)"><span>空间导视</span></div>
-        <div class="card-info"><div class="card-title">空间导视</div><div class="card-sub">店面 · 指示</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="物料延展" data-desc="牛肉面馆 · 菜单餐具周边">
-        <div class="card-img" style="background:linear-gradient(135deg,#1e1e3d,#2e2e4a,#3d2e1e)"><span>物料延展</span></div>
-        <div class="card-info"><div class="card-title">物料延展</div><div class="card-sub">菜单 · 周边</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="品牌插画" data-desc="牛肉面馆 · 手绘风格插画">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d1e3d,#4a2e4a,#5c3a2e)"><span>品牌插画</span></div>
-        <div class="card-info"><div class="card-title">品牌插画</div><div class="card-sub">手绘 · 氛围</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 直率咖啡系列 -->
-  <div class="series-section">
-    <div class="series-header">
-      <h3>直率咖啡系列</h3>
-      <span class="badge">包装设计</span>
-    </div>
-    <div class="scroll-row" id="row-coffee">
-      <div class="photo-card" onclick="openLightbox(this)" data-title="袋装包装" data-desc="直率咖啡 · 咖啡豆包装袋">
-        <div class="card-img" style="background:linear-gradient(135deg,#2e2e1e,#3d3d1a,#5c5c1e)"><span>袋装包装</span></div>
-        <div class="card-info"><div class="card-title">袋装包装</div><div class="card-sub">咖啡豆 · 袋装</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="杯身设计" data-desc="直率咖啡 · 外带杯视觉">
-        <div class="card-img" style="background:linear-gradient(135deg,#1e2e2e,#1a3d3d,#1e5c5c)"><span>杯身设计</span></div>
-        <div class="card-info"><div class="card-title">杯身设计</div><div class="card-sub">外带杯 · 视觉</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="礼盒套装" data-desc="直率咖啡 · 节日限定礼盒">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d1e2e,#5c1e4a,#3d2e4a)"><span>礼盒套装</span></div>
-        <div class="card-info"><div class="card-title">礼盒套装</div><div class="card-sub">节日 · 限定</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="周边物料" data-desc="直率咖啡 · 品牌延展物料">
-        <div class="card-img" style="background:linear-gradient(135deg,#2e3d2e,#1a4a1a,#1e3d1e)"><span>周边物料</span></div>
-        <div class="card-info"><div class="card-title">周边物料</div><div class="card-sub">贴纸 · 卡片</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="挂耳包装" data-desc="直率咖啡 · 挂耳包视觉">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d3d2e,#4a3d1a,#5c4a1e)"><span>挂耳包装</span></div>
-        <div class="card-info"><div class="card-title">挂耳包装</div><div class="card-sub">挂耳 · 便携</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 野草书店系列 -->
-  <div class="series-section">
-    <div class="series-header">
-      <h3>野草书店系列</h3>
-      <span class="badge">品牌设计</span>
-    </div>
-    <div class="scroll-row" id="row-weeds">
-      <div class="photo-card" onclick="openLightbox(this)" data-title="标志设计" data-desc="野草书店 · 品牌标志">
-        <div class="card-img" style="background:linear-gradient(135deg,#1e3d1e,#2e5c2e,#1e2e1e)"><span>标志设计</span></div>
-        <div class="card-info"><div class="card-title">标志设计</div><div class="card-sub">Logo · 字体</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="名片系统" data-desc="野草书店 · VI应用延展">
-        <div class="card-img" style="background:linear-gradient(135deg,#2e2e1e,#3d3d2e,#4a4a1e)"><span>名片系统</span></div>
-        <div class="card-info"><div class="card-title">名片系统</div><div class="card-sub">名片 · 信纸</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="空间视觉" data-desc="野草书店 · 店内视觉">
-        <div class="card-img" style="background:linear-gradient(135deg,#1e2e3d,#2e3d4a,#1e2e3d)"><span>空间视觉</span></div>
-        <div class="card-info"><div class="card-title">空间视觉</div><div class="card-sub">店内 · 导视</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="线上延展" data-desc="野草书店 · 社交媒体视觉">
-        <div class="card-img" style="background:linear-gradient(135deg,#3d1e2e,#4a2e3d,#5c3d4a)"><span>线上延展</span></div>
-        <div class="card-info"><div class="card-title">线上延展</div><div class="card-sub">社交 · 官网</div></div>
-      </div>
-      <div class="photo-card" onclick="openLightbox(this)" data-title="品牌手册" data-desc="野草书店 · 品牌规范文档">
-        <div class="card-img" style="background:linear-gradient(135deg,#2e3d2e,#3d4a3d,#2e3d2e)"><span>品牌手册</span></div>
-        <div class="card-info"><div class="card-title">品牌手册</div><div class="card-sub">规范 · 文档</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <h2><span class="num">03</span>关于设计</h2>
-  <p>万晨图影是一个<span class="highlight">AI 驱动的设计实验室</span>。</p>
-  <p>我们不把 AI 当作炫技工具，而是把它当作直率的合作者——它生成，我们判断；它穷举，我们选择。</p>
-  <p>在这个过度精致、过度包装的设计行业里，我们选择<span class="highlight">用算法做减法，用数据找本真，用人来定方向</span>。</p>
-  <p>工作方式：<span class="highlight">人定策略，AI 执行。不编造故事，不隐藏技术，不妥协品质</span>。</p>
-</section>
-
-<section class="contact-banner" id="contact">
-  <h2>CONTACT<br>ME</h2>
-  <div class="contact-text">
-    <p>如果你也厌倦了精致的设计废话</p>
-    <p>如果你需要真实、直接、有力量的设计</p>
-    <p>如果你愿意为品质买单，而不是为故事付费</p>
-    <p>联系我：<span style="color:var(--void);text-decoration:underline;">微信号 wctysj</span></p>
-  </div>
-</section>
-
-<footer>
-  <div class="col"><strong>万晨图影设计</strong><span>福建省泉州市丰泽区</span></div>
-  <div class="col"><strong>联系方式</strong><span>微信号:wctysj</span></div>
-  <div class="col"><strong>在线时间</strong><span>8:00-24:00</span></div>
-  <div class="col"><strong>社交平台</strong><a href="https://xhslink.com/m/7Qd5zSt8IoB">小红书</a><a href="https://weibo.com/u/6855052465">微博</a><a href="tencent://message/?uin=1160229171">QQ</a></div>
-</footer>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lb-close" onclick="document.getElementById('lightbox').classList.remove('active')">&times;</button>
-  <div class="lb-content" onclick="event.stopPropagation()">
-    <div class="lb-img" id="lb-img"><span></span></div>
-    <div class="lb-title" id="lb-title"></div>
-    <div class="lb-desc" id="lb-desc"></div>
-  </div>
 </div>
 
-<script>
-function openLightbox(card) {
-  const lb = document.getElementById('lightbox');
-  const imgEl = document.getElementById('lb-img');
-  const titleEl = document.getElementById('lb-title');
-  const descEl = document.getElementById('lb-desc');
+<section style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 60px;position:relative">
+  <h1 style="font-size:clamp(40px,8vw,80px);font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:16px">万晨图影设计</h1>
+  <p style="font-size:clamp(18px,3vw,26px);color:var(--text-muted);margin-bottom:8px;font-weight:400">先选风格，再做设计</p>
+  <p style="font-size:clamp(13px,1.5vw,16px);color:var(--text-muted);max-width:520px;line-height:1.8;margin-bottom:56px">
+    这里是一份给客户看的视觉参考库，你可以先选择喜欢的设计风格，再根据案例确认具体物料的呈现方式。
+  </p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;width:100%">
+    <a href="styles.html" class="glass-card" style="text-decoration:none;padding:40px 28px;display:block;text-align:left">
+      <p style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">STEP 01</p>
+      <h2 style="font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent);margin-bottom:12px">设计风格预览</h2>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px">还没确定想要什么感觉？先从这里选择整体视觉方向。</p>
+      <span class="btn-primary" style="font-size:13px">进入风格库</span>
+    </a>
+    <a href="cases.html" class="glass-card" style="text-decoration:none;padding:40px 28px;display:block;text-align:left">
+      <p style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">STEP 02</p>
+      <h2 style="font-size:clamp(20px,3vw,28px);font-weight:800;color:var(--accent);margin-bottom:12px">案例参考</h2>
+      <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:20px">已经知道要做菜单、海报、电商图或包装？从这里查看具体落地案例。</p>
+      <span class="btn-primary" style="font-size:13px">查看案例</span>
+    </a>
+  </div>
+</section>
 
-  // 复制卡片图片样式到 lightbox
-  const cardImg = card.querySelector('.card-img');
-  imgEl.style.background = cardImg.style.background || cardImg.getAttribute('style');
-  imgEl.querySelector('span').textContent = card.dataset.title;
-
-  titleEl.textContent = card.dataset.title;
-  descEl.textContent = card.dataset.desc;
-
-  lb.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox(e) {
-  if (e.target === document.getElementById('lightbox')) {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-});
-</script>
-
-</body>
-</html>
+<div class="footer-cta" id="contact">
+  <p class="fc-text">确定风格后，把风格名称或案例截图发给我们即可开始沟通</p>
+  <p class="fc-contact">微信：wctysj</p>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:6px">备注：设计咨询 + 项目类型</p>
+</div>
+<div class="site-footer">© 2024 万晨图影设计</div>
+</body></html>

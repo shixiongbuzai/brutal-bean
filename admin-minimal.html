@@ -14,14 +14,14 @@ h1{font-size:24px;font-weight:900;margin-bottom:4px}
 
 .upload-box{
   border:2px dashed #bbb;border-radius:16px;padding:28px 16px;text-align:center;
-  cursor:pointer;background:#f9f8f5;margin-bottom:20px;
+  cursor:pointer;background:#f9f8f5;margin-bottom:12px;
 }
 .upload-box:hover, .upload-box.active{border-color:#333;background:#f0efeb}
 .upload-box p{font-size:14px;color:#6b6b6b;margin-bottom:6px}
-.upload-box .btn{margin-top:6px}
-.status{font-size:13px;color:#6b6b6b;text-align:center;margin-bottom:16px;min-height:20px}
-.status.ok{color:#2d8a4e}
-.status.err{color:#c0392b}
+
+.status{font-size:14px;font-weight:600;text-align:center;margin-bottom:16px;min-height:22px;padding:8px;border-radius:8px}
+.status.ok{color:#1a7a3a;background:#e6f7e6}
+.status.err{color:#c0392b;background:#fdeaea}
 
 .img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(min-width:640px){.img-grid{grid-template-columns:repeat(3,1fr)}}
@@ -39,11 +39,13 @@ h1{font-size:24px;font-weight:900;margin-bottom:4px}
 .img-card .title{font-size:12px;font-weight:600;margin-bottom:2px}
 .img-card .fid{font-size:10px;color:#aaa;margin-bottom:6px}
 .btn{
-  display:inline-block;padding:5px 12px;font-size:11px;border:1px solid #ccc;
+  display:inline-block;padding:6px 14px;font-size:12px;border:1px solid #ccc;
   border-radius:16px;cursor:pointer;background:#fff;color:#555;
 }
 .btn:hover{color:#111;border-color:#888}
-.btn.block{display:block;width:100%;text-align:center}
+.btn.block{display:block;width:100%;text-align:center;padding:8px;font-weight:600;font-size:13px;border-color:#999;color:#333}
+.btn.block:hover{background:#f5f5f5;border-color:#333}
+.uploading{opacity:.6;pointer-events:none}
 </style>
 </head>
 <body>
@@ -53,12 +55,12 @@ h1{font-size:24px;font-weight:900;margin-bottom:4px}
   <a href="styles.html">风格预览</a>
 </div>
 <h1>高级极简风 · 图片管理</h1>
-<p class="sub">点击图片下方「替换」按钮选择新图片上传，覆盖后刷新网站即生效。</p>
+<p class="sub">点击「替换此图」→ 选择图片 → 自动上传并替换</p>
 
 <div class="upload-box" id="dropZone">
-  <p>拖拽图片到此处上传 <br><small>（文件名需与目标ID一致）</small></p>
-  <input type="file" id="fileInput" hidden accept="image/png,image/jpeg,image/webp">
-  <button class="btn" onclick="document.getElementById('fileInput').click()">点击选择文件</button>
+  <p>拖拽图片到此处上传<br><small>（文件名需与目标ID一致，或先点击卡片「替换此图」）</small></p>
+  <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" style="display:none">
+  <label for="fileInput" class="btn" style="margin-top:6px;display:inline-block">点击选择文件</label>
 </div>
 <div class="status" id="status"></div>
 
@@ -82,23 +84,22 @@ function build() {
   for (var i = 0; i < IMGS.length; i++) {
     var id = IMGS[i];
     var nm = NAMES[i];
-    h += '<div class="img-card">';
+    h += '<div class="img-card" id="card_' + i + '">';
     h += '<div class="preview" id="pv_' + i + '">';
     h += '<img src="' + imgUrl(id) + '" alt="' + nm + '" onerror="fallback(' + i + ')" onload="loaded(' + i + ')">';
     h += '<span id="fb_' + i + '" style="display:none">' + nm + '</span>';
     h += '</div>';
     h += '<div class="title">' + nm + '</div>';
     h += '<div class="fid">' + id + '.png</div>';
-    h += '<button class="btn block" data-img="' + id + '">替换此图</button>';
+    h += '<button class="btn block" data-img="' + id + '" data-idx="' + i + '">替换此图</button>';
     h += '</div>';
   }
   g.innerHTML = h;
-  // bind click events
   var btns = g.querySelectorAll("button[data-img]");
   for (var j = 0; j < btns.length; j++) {
-    btns[j].onclick = (function(imgId) {
-      return function() { pick(imgId); };
-    })(btns[j].getAttribute("data-img"));
+    btns[j].onclick = (function(imgId, idx) {
+      return function() { pick(imgId, idx); };
+    })(btns[j].getAttribute("data-img"), parseInt(btns[j].getAttribute("data-idx")));
   }
 }
 
@@ -111,49 +112,76 @@ function loaded(i) {
   if (fb) fb.style.display = "none";
 }
 
-function pick(id) {
+function pick(id, idx) {
   targetId = id;
+  // highlight the card
+  var cards = document.querySelectorAll(".img-card");
+  for (var i = 0; i < cards.length; i++) cards[i].style.outline = "";
+  var card = document.getElementById("card_" + idx);
+  if (card) card.style.outline = "2px solid #333";
   document.getElementById("fileInput").click();
+}
+
+function showStatus(msg, ok) {
+  var st = document.getElementById("status");
+  st.textContent = msg;
+  st.className = "status" + (ok ? " ok" : " err");
+  st.style.display = "block";
 }
 
 function upload(file) {
   if (!targetId) return;
-  var st = document.getElementById("status");
-  st.textContent = "上传中...";
-  st.className = "status";
+  showStatus("正在上传 " + targetId + " ...", false);
+
+  // Show uploading state on all cards
+  var cards = document.querySelectorAll(".img-card");
+  for (var i = 0; i < cards.length; i++) cards[i].classList.add("uploading");
+
   var fd = new FormData();
   fd.append("file", file);
   fd.append("upload_preset", UPLOAD_PRESET);
   fd.append("public_id", targetId);
   fd.append("overwrite", "true");
   fd.append("invalidate", "true");
+
   fetch(API_URL, {method:"POST", body:fd})
     .then(function(r){return r.json()})
     .then(function(d){
+      for (var i = 0; i < cards.length; i++) cards[i].classList.remove("uploading");
       if (d.secure_url) {
-        st.textContent = targetId + ".png 替换成功，刷新网站即生效";
-        st.className = "status ok";
+        showStatus("✓ " + targetId + ".png 替换成功！刷新网站即可看到新图", true);
         var t = targetId;
         targetId = null;
-        setTimeout(function(){ for(var i=0;i<IMGS.length;i++){ if(IMGS[i]===t){ var img=document.querySelector("#pv_"+i+" img"); if(img)img.src=imgUrl(t)+"?t="+Date.now(); } } }, 500);
+        setTimeout(function(){
+          for(var i=0;i<IMGS.length;i++){
+            if(IMGS[i]===t){
+              var img=document.querySelector("#pv_"+i+" img");
+              if(img)img.src=imgUrl(t)+"?t="+Date.now();
+              var c=document.getElementById("card_"+i);
+              if(c)c.style.outline="";
+            }
+          }
+        }, 600);
       } else {
-        st.textContent = "上传失败: " + (d.error ? d.error.message : "未知错误");
-        st.className = "status err";
+        showStatus("✗ 上传失败: " + (d.error ? d.error.message : "未知错误"), false);
         targetId = null;
       }
     })
     .catch(function(e){
-      st.textContent = "上传失败: " + e.message;
-      st.className = "status err";
+      for (var i = 0; i < cards.length; i++) cards[i].classList.remove("uploading");
+      showStatus("✗ 上传失败: " + e.message, false);
       targetId = null;
     });
 }
 
 document.getElementById("fileInput").onchange = function(e) {
-  if (e.target.files[0]) upload(e.target.files[0]);
+  if (e.target.files && e.target.files[0]) {
+    upload(e.target.files[0]);
+  }
   this.value = "";
 };
 
+// Drag & drop
 var dz = document.getElementById("dropZone");
 dz.ondragover = function(e) { e.preventDefault(); dz.className = "upload-box active"; };
 dz.ondragleave = function() { dz.className = "upload-box"; };
@@ -164,7 +192,7 @@ dz.ondrop = function(e) {
     var fn = e.dataTransfer.files[0].name.replace(/\.[^.]+$/,"");
     var m = IMGS.indexOf(fn);
     if (m >= 0) { targetId = IMGS[m]; upload(e.dataTransfer.files[0]); }
-    else { document.getElementById("status").textContent = '"' + fn + '" 未匹配，请点卡片「替换」按钮'; document.getElementById("status").className = "status err"; }
+    else { showStatus("'" + fn + "' 未匹配已知图片ID，请先点击卡片上的「替换此图」按钮", false); }
   }
 };
 

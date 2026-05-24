@@ -6,7 +6,10 @@ base = os.path.dirname(os.path.abspath(__file__))
 pages = [
     "style-cartoon.html", "style-chinese.html", "style-dark-food.html",
     "style-ecommerce.html", "style-japanese.html", "style-minimal.html",
-    "style-retro.html", "style-tech.html", "styles.html"
+    "style-retro.html", "style-tech.html", "styles.html",
+    "admin-cartoon.html", "admin-chinese.html", "admin-dark-food.html",
+    "admin-ecommerce.html", "admin-japanese.html", "admin-minimal.html",
+    "admin-retro.html", "admin-tech.html"
 ]
 
 # Find current version from first file

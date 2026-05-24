@@ -124,7 +124,7 @@ function upload(file) {
   var fd = new FormData();
   fd.append("file", file);
   fd.append("upload_preset", UPLOAD_PRESET);
-  fd.append("public_id", "wanchen_assets/" + targetId);
+  fd.append("public_id", targetId);
   fd.append("overwrite", "true");
   fd.append("invalidate", "true");
   fetch(API_URL, {method:"POST", body:fd})

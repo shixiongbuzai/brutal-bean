@@ -6,162 +6,162 @@
 <title>电商促销风管理 — 万晨图影设计</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#f5f4f0;--text:#1a1a1a;--text-muted:#6b6b6b;
-  --accent:#1a1a1a;--glass-bg:rgba(255,255,255,0.65);
-  --glass-border:rgba(0,0,0,0.06);--radius:16px;--radius-sm:10px;
-  --font-sans:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;
+body{font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;background:#f5f4f0;color:#1a1a1a;padding:30px 16px;max-width:800px;margin:0 auto}
+.nav{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.nav a{font-size:13px;color:#6b6b6b;text-decoration:none;padding:6px 14px;border:1px solid #e0ddd8;border-radius:20px}
+h1{font-size:24px;font-weight:900;margin-bottom:4px}
+.sub{font-size:14px;color:#6b6b6b;margin-bottom:20px}
+
+.upload-box{
+  border:2px dashed #bbb;border-radius:16px;padding:28px 16px;text-align:center;
+  cursor:pointer;background:#f9f8f5;margin-bottom:20px;
 }
-body{font-family:var(--font-sans);background:var(--bg);color:var(--text);padding:40px 20px;max-width:1100px;margin:0 auto}
-h1{font-size:28px;font-weight:900;margin-bottom:4px;letter-spacing:-0.02em}
-.sub{font-size:14px;color:var(--text-muted);margin-bottom:32px}
-.glass-card{
-  background:var(--glass-bg);backdrop-filter:blur(16px);
-  border:1px solid var(--glass-border);border-radius:var(--radius);
-  padding:20px;transition:all .25s ease;margin-bottom:16px;
-}
-.glass-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.04)}
-.upload-area{
-  border:2px dashed var(--glass-border);border-radius:var(--radius);
-  padding:32px 24px;text-align:center;cursor:pointer;transition:all .25s;
-  background:#f9f8f5;margin-bottom:24px;display:block;
-}
-.upload-area:hover,.upload-area.drag{border-color:var(--accent);background:#f0efeb}
-.upload-area p{font-size:14px;color:var(--text-muted);margin-bottom:8px}
-
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:768px){.grid3{grid-template-columns:repeat(2,1fr)}body{padding:24px 12px}}
-@media(max-width:480px){.grid3{grid-template-columns:1fr}}
-
-.card-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm);background:#eae8e3;display:block}
-.card-name{font-size:13px;font-weight:600;margin:8px 0 2px}
-.card-id{font-size:11px;color:var(--text-muted);word-break:break-all;margin-bottom:8px}
-
-.btn{display:inline-block;padding:6px 14px;font-size:11px;border:1px solid var(--glass-border);border-radius:20px;cursor:pointer;background:none;color:var(--text-muted);transition:all .2s}
-.btn:hover{color:var(--accent);border-color:var(--accent)}
-.btn.replace{width:100%;margin-top:4px;text-align:center}
-
-.status{font-size:12px;color:var(--text-muted);text-align:center;margin:8px 0;min-height:18px}
+.upload-box:hover, .upload-box.active{border-color:#333;background:#f0efeb}
+.upload-box p{font-size:14px;color:#6b6b6b;margin-bottom:6px}
+.upload-box .btn{margin-top:6px}
+.status{font-size:13px;color:#6b6b6b;text-align:center;margin-bottom:16px;min-height:20px}
 .status.ok{color:#2d8a4e}
 .status.err{color:#c0392b}
 
-.nav{display:flex;gap:16px;margin-bottom:32px}
-.nav a{font-size:13px;color:var(--text-muted);text-decoration:none;padding:6px 14px;border:1px solid var(--glass-border);border-radius:20px;transition:all .2s}
-.nav a:hover{color:var(--accent);border-color:var(--accent)}
-.fb-img{display:flex;align-items:center;justify-content:center;background:#eae8e3;border-radius:var(--radius-sm);aspect-ratio:4/3;font-size:12px;color:var(--text-muted);letter-spacing:0.03em;margin-bottom:10px}
+.img-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:640px){.img-grid{grid-template-columns:repeat(3,1fr)}}
+
+.img-card{
+  background:#fff;border:1px solid #e8e5e0;border-radius:14px;
+  padding:10px;text-align:center;
+}
+.img-card .preview{
+  width:100%;aspect-ratio:4/3;border-radius:10px;background:#eae8e3;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:#aaa;margin-bottom:8px;overflow:hidden;
+}
+.img-card .preview img{width:100%;height:100%;object-fit:cover;display:block}
+.img-card .title{font-size:12px;font-weight:600;margin-bottom:2px}
+.img-card .fid{font-size:10px;color:#aaa;margin-bottom:6px}
+.btn{
+  display:inline-block;padding:5px 12px;font-size:11px;border:1px solid #ccc;
+  border-radius:16px;cursor:pointer;background:#fff;color:#555;
+}
+.btn:hover{color:#111;border-color:#888}
+.btn.block{display:block;width:100%;text-align:center}
 </style>
 </head>
 <body>
 <div class="nav">
-  <a href="admin.html">← 返回管理首页</a>
+  <a href="admin.html">← 管理首页</a>
   <a href="index.html">网站首页</a>
   <a href="styles.html">风格预览</a>
 </div>
 <h1>电商促销风 · 图片管理</h1>
-<p class="sub">点击「替换」按钮或拖拽图片到上传区域，覆盖后刷新网站即生效。</p>
+<p class="sub">点击图片下方「替换」按钮选择新图片上传，覆盖后刷新网站即生效。</p>
 
-<div class="upload-area glass-card" id="dropZone">
-  <p>拖拽图片到此处上传（文件名需与目标图片ID一致，或先点目标卡片「替换」）</p>
+<div class="upload-box" id="dropZone">
+  <p>拖拽图片到此处上传 <br><small>（文件名需与目标ID一致）</small></p>
   <input type="file" id="fileInput" hidden accept="image/png,image/jpeg,image/webp">
-  <button class="btn" onclick="document.getElementById('fileInput').click()" style="margin-top:8px">或点击选择文件</button>
+  <button class="btn" onclick="document.getElementById('fileInput').click()">点击选择文件</button>
 </div>
-<p class="status" id="status"></p>
+<div class="status" id="status"></div>
 
-<div class="grid3" id="gallery"></div>
+<div class="img-grid" id="gallery"></div>
 
 <script>
 var CLOUD_NAME = "dzcob4flc";
 var UPLOAD_PRESET = "wanchen_upload";
-var CLOUD_BASE = "https://res.cloudinary.com/" + CLOUD_NAME + "/image/upload/f_auto,q_auto";
-
-var IMAGES = [{"id": "ecommerce-hero", "name": "主视觉（首屏）", "ratio": "16/9"}, {"id": "ecommerce-main1", "name": "淘宝/拼多多主图", "ratio": "4/3"}, {"id": "ecommerce-live", "name": "抖音直播海报", "ratio": "4/3"}, {"id": "ecommerce-seckill", "name": "限时秒杀图", "ratio": "4/3"}, {"id": "ecommerce-banner", "name": "618/双11 banner", "ratio": "4/3"}, {"id": "ecommerce-douyin", "name": "抖音小店主图", "ratio": "4/3"}, {"id": "ecommerce-store", "name": "门店促销海报", "ratio": "4/3"}];
-
+var API_URL = "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload";
+var IMGS = ["ecommerce-hero", "ecommerce-main1", "ecommerce-live", "ecommerce-seckill", "ecommerce-banner", "ecommerce-douyin", "ecommerce-store"];
+var NAMES = ["主视觉（首屏）", "淘宝主图", "直播海报", "限时秒杀图", "大促banner", "抖音主图", "门店促销海报"];
 var targetId = null;
 
-function getUrl(id){
-  return CLOUD_BASE + "/wanchen_assets/" + id + ".png";
+function imgUrl(id) {
+  return "https://res.cloudinary.com/" + CLOUD_NAME + "/image/upload/f_auto,q_auto/wanchen_assets/" + id + ".png";
 }
 
-function renderGallery(){
-  var el = document.getElementById("gallery");
-  var html = "";
-  IMAGES.forEach(function(img){
-    html += '<div class="glass-card">';
-    html += '<img class="card-img" src="' + getUrl(img.id) + '?t=' + Date.now() + '" alt="' + img.name + '" loading="lazy" onerror="this.style.display=\'none\';this.parentElement.querySelector(\'.fb-img\').style.display=\'flex\'">';
-    html += '<div class="fb-img" style="display:none">' + img.name + '</div>';
-    html += '<div class="card-name">' + img.name + '</div>';
-    html += '<div class="card-id">' + img.id + '.png</div>';
-    html += '<button class="btn replace" onclick="triggerReplace(\'' + img.id + '\')">替换此图</button>';
-    html += '</div>';
-  });
-  el.innerHTML = html;
+function build() {
+  var g = document.getElementById("gallery");
+  var h = "";
+  for (var i = 0; i < IMGS.length; i++) {
+    var id = IMGS[i];
+    var nm = NAMES[i];
+    h += '<div class="img-card">';
+    h += '  <div class="preview" id="pv_' + i + '">';
+    h += '    <img src="' + imgUrl(id) + '" alt="' + nm + '" onerror="fallback(' + i + ')" onload="loaded(' + i + ')">';
+    h += '    <span id="fb_' + i + '" style="display:none">' + nm + '</span>';
+    h += '  </div>';
+    h += '  <div class="title">' + nm + '</div>';
+    h += '  <div class="fid">' + id + '.png</div>';
+    h += '  <button class="btn block" onclick="pick('' + id + '')">替换此图</button>';
+    h += '</div>';
+  }
+  g.innerHTML = h;
 }
 
-function triggerReplace(id){
+function fallback(i) {
+  var fb = document.getElementById("fb_" + i);
+  if (fb) fb.style.display = "block";
+}
+function loaded(i) {
+  var fb = document.getElementById("fb_" + i);
+  if (fb) fb.style.display = "none";
+}
+
+function pick(id) {
   targetId = id;
   document.getElementById("fileInput").click();
 }
 
-function uploadFile(file){
-  if(!targetId) return;
-  var statusEl = document.getElementById("status");
-  statusEl.textContent = "上传中...";
-  statusEl.className = "status";
-
-  var form = new FormData();
-  form.append("file", file);
-  form.append("upload_preset", UPLOAD_PRESET);
-  form.append("public_id", "wanchen_assets/" + targetId);
-  form.append("overwrite", "true");
-  form.append("invalidate", "true");
-
-  fetch("https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload", {
-    method: "POST",
-    body: form
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(data){
-    if(data.secure_url){
-      statusEl.textContent = "✓ " + targetId + ".png 已替换成功，刷新网站即生效";
-      statusEl.className = "status ok";
-      setTimeout(renderGallery, 800);
+function upload(file) {
+  if (!targetId) return;
+  var st = document.getElementById("status");
+  st.textContent = "上传中...";
+  st.className = "status";
+  var fd = new FormData();
+  fd.append("file", file);
+  fd.append("upload_preset", UPLOAD_PRESET);
+  fd.append("public_id", "wanchen_assets/" + targetId);
+  fd.append("overwrite", "true");
+  fd.append("invalidate", "true");
+  fetch(API_URL, {method:"POST", body:fd})
+    .then(function(r){return r.json()})
+    .then(function(d){
+      if (d.secure_url) {
+        st.textContent = targetId + ".png 替换成功，刷新网站即生效";
+        st.className = "status ok";
+        var t = targetId;
+        targetId = null;
+        setTimeout(function(){ for(var i=0;i<IMGS.length;i++){ if(IMGS[i]===t){ var img=document.querySelector("#pv_"+i+" img"); if(img)img.src=imgUrl(t)+"?t="+Date.now(); } } }, 500);
+      } else {
+        st.textContent = "上传失败: " + (d.error ? d.error.message : "未知错误");
+        st.className = "status err";
+        targetId = null;
+      }
+    })
+    .catch(function(e){
+      st.textContent = "上传失败: " + e.message;
+      st.className = "status err";
       targetId = null;
-    } else {
-      throw new Error(data.error ? data.error.message : "上传失败");
-    }
-  })
-  .catch(function(err){
-    statusEl.textContent = "✗ " + err.message;
-    statusEl.className = "status err";
-    targetId = null;
-  });
+    });
 }
 
-document.getElementById("fileInput").addEventListener("change", function(e){
-  if(e.target.files[0]) uploadFile(e.target.files[0]);
+document.getElementById("fileInput").onchange = function(e) {
+  if (e.target.files[0]) upload(e.target.files[0]);
   this.value = "";
-});
+};
 
-var dropZone = document.getElementById("dropZone");
-dropZone.addEventListener("dragover", function(e){ e.preventDefault(); dropZone.classList.add("drag"); });
-dropZone.addEventListener("dragleave", function(){ dropZone.classList.remove("drag"); });
-dropZone.addEventListener("drop", function(e){
+var dz = document.getElementById("dropZone");
+dz.ondragover = function(e) { e.preventDefault(); dz.className = "upload-box active"; };
+dz.ondragleave = function() { dz.className = "upload-box"; };
+dz.ondrop = function(e) {
   e.preventDefault();
-  dropZone.classList.remove("drag");
-  if(e.dataTransfer.files[0]){
-    var fname = e.dataTransfer.files[0].name.replace(/\.[^.]+$/,"");
-    var match = IMAGES.find(function(img){ return img.id === fname; });
-    if(match){
-      targetId = match.id;
-      uploadFile(e.dataTransfer.files[0]);
-    } else {
-      document.getElementById("status").textContent = "文件名 "" + fname + "" 未匹配已知图片，请点对应卡片「替换」按钮";
-      document.getElementById("status").className = "status err";
-    }
+  dz.className = "upload-box";
+  if (e.dataTransfer.files[0]) {
+    var fn = e.dataTransfer.files[0].name.replace(/\.[^.]+$/,"");
+    var m = IMGS.indexOf(fn);
+    if (m >= 0) { targetId = IMGS[m]; upload(e.dataTransfer.files[0]); }
+    else { document.getElementById("status").textContent = '"' + fn + '" 未匹配，请点卡片「替换」按钮'; document.getElementById("status").className = "status err"; }
   }
-});
+};
 
-renderGallery();
+build();
 </script>
 </body>
 </html>

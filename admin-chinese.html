@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>国潮中式风管理 — 万晨图影设计</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans SC','PingFang SC','Hiragino Sans GB',sans-serif;background:#f5f4f0;color:#1a1a1a;padding:30px 16px;max-width:800px;margin:0 auto}
@@ -72,7 +73,9 @@ if (sessionStorage.getItem("admin_auth") !== "true") {
 }
 
 var CLOUD_NAME = "dzcob4flc";
-var UPLOAD_PRESET = "wanchen_upload";
+var API_KEY = "537211966164838";
+var API_SECRET = "mXZGgRdQ4HlUGEmVYQ2hEVpvDUs";
+var UPLOAD_PRESET = "wanchen_signed";
 var API_URL = "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload";
 var IMGS = ["chinese-hero", "chinese-menu", "chinese-spring", "chinese-pack", "chinese-material", "chinese-midautumn", "chinese-classic"];
 var NAMES = ["主视觉（首屏）", "中餐折页菜单", "春节活动海报", "茶饮杯/礼盒包装", "名片/手提袋", "中秋节海报", "老字号菜单"];
@@ -137,15 +140,23 @@ function upload(file) {
   if (!targetId) return;
   showStatus("正在上传 " + targetId + " ...", false);
 
-  // Show uploading state on all cards
   var cards = document.querySelectorAll(".img-card");
   for (var i = 0; i < cards.length; i++) cards[i].classList.add("uploading");
 
+  var pubId = "wanchen_assets/" + targetId;
+  var ts = Math.floor(Date.now() / 1000).toString();
+  var toSign = "invalidate=true&overwrite=true&public_id=" + pubId + "&timestamp=" + ts + "&upload_preset=" + UPLOAD_PRESET;
+  var sig = CryptoJS.SHA1(toSign + API_SECRET).toString();
+
   var fd = new FormData();
   fd.append("file", file);
+  fd.append("api_key", API_KEY);
+  fd.append("timestamp", ts);
+  fd.append("signature", sig);
   fd.append("upload_preset", UPLOAD_PRESET);
-  fd.append("public_id", targetId);
-  
+  fd.append("public_id", pubId);
+  fd.append("overwrite", "true");
+  fd.append("invalidate", "true");
 
   fetch(API_URL, {method:"POST", body:fd})
     .then(function(r){return r.json()})
@@ -159,12 +170,12 @@ function upload(file) {
           for(var i=0;i<IMGS.length;i++){
             if(IMGS[i]===t){
               var img=document.querySelector("#pv_"+i+" img");
-              if(img)img.src=imgUrl(t)+"?t="+Date.now();
+              if(img)img.src=imgUrl(t)+"?v="+Date.now();
               var c=document.getElementById("card_"+i);
               if(c)c.style.outline="";
             }
           }
-        }, 600);
+        }, 800);
       } else {
         showStatus("✗ 上传失败: " + (d.error ? d.error.message : "未知错误"), false);
         targetId = null;
@@ -172,7 +183,7 @@ function upload(file) {
     })
     .catch(function(e){
       for (var i = 0; i < cards.length; i++) cards[i].classList.remove("uploading");
-      showStatus("✗ 上传失败: " + e.message, false);
+      showStatus("✗ 网络错误: " + e.message, false);
       targetId = null;
     });
 }

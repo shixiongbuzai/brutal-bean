@@ -164,8 +164,9 @@ function setupLogin(){
 function renderStyleList(){
   var el = document.getElementById("styleList");
   el.innerHTML = STYLES.map(function(s){
+    var fallback = 'background:'+s.color+';display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted)';
     return '<div class="glass-card">'
-      + '<div class="card-img" style="background:'+s.color+';display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted)">'+s.name+'</div>'
+      + '<img class="card-img" src="https://res.cloudinary.com/dzcob4flc/image/upload/f_auto,q_auto/wanchen_assets/'+s.id+'-hero.png?v=1" loading="lazy" onerror="var d=document.createElement(\'div\');d.className=\'card-img\';d.style=\''+fallback+'\';d.textContent=\''+s.name+'\';this.replaceWith(d)">'
       + '<div class="card-name">'+s.name+'</div>'
       + '<div class="card-desc">'+s.desc+'</div>'
       + '<div class="card-id">'+s.count+' 张图片</div>'

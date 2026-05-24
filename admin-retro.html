@@ -83,16 +83,23 @@ function build() {
     var id = IMGS[i];
     var nm = NAMES[i];
     h += '<div class="img-card">';
-    h += '  <div class="preview" id="pv_' + i + '">';
-    h += '    <img src="' + imgUrl(id) + '" alt="' + nm + '" onerror="fallback(' + i + ')" onload="loaded(' + i + ')">';
-    h += '    <span id="fb_' + i + '" style="display:none">' + nm + '</span>';
-    h += '  </div>';
-    h += '  <div class="title">' + nm + '</div>';
-    h += '  <div class="fid">' + id + '.png</div>';
-    h += '  <button class="btn block" onclick="pick('' + id + '')">替换此图</button>';
+    h += '<div class="preview" id="pv_' + i + '">';
+    h += '<img src="' + imgUrl(id) + '" alt="' + nm + '" onerror="fallback(' + i + ')" onload="loaded(' + i + ')">';
+    h += '<span id="fb_' + i + '" style="display:none">' + nm + '</span>';
+    h += '</div>';
+    h += '<div class="title">' + nm + '</div>';
+    h += '<div class="fid">' + id + '.png</div>';
+    h += '<button class="btn block" data-img="' + id + '">替换此图</button>';
     h += '</div>';
   }
   g.innerHTML = h;
+  // bind click events
+  var btns = g.querySelectorAll("button[data-img]");
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].onclick = (function(imgId) {
+      return function() { pick(imgId); };
+    })(btns[j].getAttribute("data-img"));
+  }
 }
 
 function fallback(i) {

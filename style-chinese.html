@@ -43,7 +43,7 @@
   .hero .sub{font-size:clamp(14px,1.8vw,17px);color:var(--text-muted);max-width:600px;margin:0 auto 24px;line-height:1.7}
   .hero .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px}
   .hero .meta span{padding:4px 12px;border-radius:6px;font-size:12px;color:var(--text-muted);background:rgba(0,0,0,0.03);border:1px solid var(--border)}
-  .hero-img{width:100%;max-width:800px;margin:0 auto;aspect-ratio:16/9;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);letter-spacing:0.05em;background:#c41e3a;opacity:0.9}
+  .hero-img{width:100%;max-width:800px;margin:0 auto;border-radius:var(--radius);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-muted);letter-spacing:0.05em;background:#c41e3a;opacity:0.9}
 
   .section{max-width:1100px;margin:0 auto;padding:48px 24px}
   .section-title{font-size:20px;font-weight:700;margin-bottom:20px;letter-spacing:-0.01em}
@@ -51,7 +51,7 @@
   @media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:640px){.gallery-grid{grid-template-columns:1fr}}
   .gi-card{padding:10px}
-  .gi-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm);display:block}
+  .gi-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:var(--radius-sm);display:block}
   .gi-fb{display:none}
   .gi-cap{font-size:11px;color:var(--text-muted);margin-top:6px;text-align:center;letter-spacing:0.03em}
 
@@ -65,6 +65,13 @@
   .footer-cta .fc-contact{font-size:15px;font-weight:600;color:var(--accent)}
   .site-footer{padding:32px;text-align:center;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border)}
   @media(max-width:640px){.hero{padding:100px 16px 32px}.section{padding:32px 16px}.footer-cta{margin:40px 16px 32px;padding:24px 20px}}
+
+  .lb-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.92);z-index:9999;display:none;align-items:center;justify-content:center;cursor:pointer}
+  .lb-overlay.show{display:flex}
+  .lb-img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;box-shadow:0 0 60px rgba(0,0,0,0.5)}
+  .lb-close{position:absolute;top:20px;right:28px;font-size:32px;color:#fff;cursor:pointer;z-index:10000;line-height:1}
+  .lb-close:hover{opacity:0.7}
+  .gi-img{cursor:pointer}
 </style>
 </head>
 <body>
@@ -86,27 +93,27 @@
   <div class="section-title">样张展示</div>
   <div class="gallery-grid">
       <div class="gi-card glass-card">
-        <div class="gi-fb" style="width:100%;aspect-ratio:4/3;background:#c41e3a;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">菜单方向</div>
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#c41e3a;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">菜单方向</div>
         <p class="gi-cap">菜单方向 — 中餐折页菜单</p>
       </div>
       <div class="gi-card glass-card">
-        <div class="gi-fb" style="width:100%;aspect-ratio:3/4;background:#8b0000;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">海报方向</div>
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#8b0000;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">海报方向</div>
         <p class="gi-cap">海报方向 — 春节活动海报</p>
       </div>
       <div class="gi-card glass-card">
-        <div class="gi-fb" style="width:100%;aspect-ratio:4/3;background:#b22222;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">包装方向</div>
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#b22222;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">包装方向</div>
         <p class="gi-cap">包装方向 — 茶饮杯 / 礼盒</p>
       </div>
       <div class="gi-card glass-card">
-        <div class="gi-fb" style="width:100%;aspect-ratio:4/3;background:#d4a017;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">品牌物料</div>
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#d4a017;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">品牌物料</div>
         <p class="gi-cap">品牌物料 — 名片 / 手提袋</p>
       </div>
       <div class="gi-card glass-card">
-        <div class="gi-fb" style="width:100%;aspect-ratio:3/4;background:#c41e3a;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">海报方向</div>
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#c41e3a;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">海报方向</div>
         <p class="gi-cap">海报方向 — 中秋节海报</p>
       </div>
       <div class="gi-card glass-card">
-        <div class="gi-fb" style="width:100%;aspect-ratio:4/3;background:#8b4513;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">菜单方向</div>
+        <div class="gi-fb" style="width:100%;aspect-ratio:16/9;background:#8b4513;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);letter-spacing:0.05em">菜单方向</div>
         <p class="gi-cap">菜单方向 — 老字号菜单</p>
       </div>
   </div>
@@ -128,5 +135,23 @@
   <p style="font-size:12px;color:var(--text-muted);margin-top:6px">备注：设计咨询 + 项目类型</p>
 </div>
 <div class="site-footer">© 2024 万晨图影设计</div>
+
+<div class="lb-overlay" id="lb" onclick="this.classList.remove('show')">
+  <span class="lb-close">&times;</span>
+  <img class="lb-img" id="lb-img" src="" alt="">
+</div>
+<script>
+document.querySelectorAll('.gi-img').forEach(img=>{
+  img.addEventListener('click',e=>{
+    e.stopPropagation();
+    document.getElementById('lb-img').src=img.src;
+    document.getElementById('lb').classList.add('show');
+  });
+});
+document.getElementById('lb').addEventListener('click',function(e){
+  if(e.target===this||e.target.className==='lb-close')this.classList.remove('show');
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lb').classList.remove('show')});
+</script>
 </body>
 </html>

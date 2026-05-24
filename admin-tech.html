@@ -67,6 +67,10 @@ h1{font-size:24px;font-weight:900;margin-bottom:4px}
 <div class="img-grid" id="gallery"></div>
 
 <script>
+if (sessionStorage.getItem("admin_auth") !== "true") {
+  window.location.href = "admin.html";
+}
+
 var CLOUD_NAME = "dzcob4flc";
 var UPLOAD_PRESET = "wanchen_upload";
 var API_URL = "https://api.cloudinary.com/v1_1/" + CLOUD_NAME + "/image/upload";

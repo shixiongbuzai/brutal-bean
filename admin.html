@@ -53,19 +53,59 @@ h1{font-size:28px;font-weight:900;margin-bottom:8px;letter-spacing:-0.02em}
 .btn:hover{color:var(--accent);border-color:var(--accent)}
 .btn.upload-trigger{margin-top:8px}
 .btn.enter-style{display:block;width:100%;margin-top:12px;text-align:center;font-size:11px;padding:8px}
+
+/* 登录覆盖层 */
+.login-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.7);display:flex;align-items:center;
+  justify-content:center;z-index:1000;padding:20px;
+}
+.login-card{
+  background:white;border-radius:var(--radius);padding:32px;
+  width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,0.2);
+}
+.login-title{font-size:24px;font-weight:900;margin-bottom:24px;text-align:center}
+.login-input{
+  width:100%;padding:14px 16px;font-size:16px;border:1px solid #ddd;
+  border-radius:10px;margin-bottom:16px;font-family:var(--font-sans);
+}
+.login-input:focus{outline:none;border-color:var(--accent)}
+.login-btn{
+  width:100%;padding:14px;font-size:16px;font-weight:600;
+  background:var(--accent);color:white;border:none;border-radius:10px;
+  cursor:pointer;transition:background .2s;font-family:var(--font-sans);
+}
+.login-btn:hover{background:#333}
+.login-error{color:#c0392b;font-size:14px;text-align:center;margin-top:12px;min-height:20px}
+.hidden{display:none!important}
 </style>
 </head>
 <body>
-<div class="nav">
-  <a href="index.html">← 返回网站首页</a>
-  <a href="styles.html">风格预览</a>
-  <a href="cases.html">案例参考</a>
-</div>
-<h1>图片管理后台</h1>
-<p class="sub">点击风格卡片进入二级管理页，上传替换该风格下的所有图片。</p>
 
-<div class="section-title">选择风格</div>
-<div class="grid4" id="styleList"></div>
+<!-- 登录覆盖层 -->
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-card">
+    <h2 class="login-title">管理后台登录</h2>
+    <input type="text" id="username" class="login-input" placeholder="账号" autocomplete="off">
+    <input type="password" id="password" class="login-input" placeholder="密码" autocomplete="off">
+    <button id="loginBtn" class="login-btn">登录</button>
+    <div id="loginError" class="login-error"></div>
+  </div>
+</div>
+
+<!-- 管理内容 -->
+<div id="adminContent" class="hidden">
+  <div class="nav">
+    <a href="index.html">← 返回网站首页</a>
+    <a href="styles.html">风格预览</a>
+    <a href="cases.html">案例参考</a>
+  </div>
+  <h1>图片管理后台</h1>
+  <p class="sub">点击风格卡片进入二级管理页，上传替换该风格下的所有图片。</p>
+
+  <div class="section-title">选择风格</div>
+  <div class="grid4" id="styleList"></div>
+</div>
 
 <script>
 const STYLES = [
@@ -79,27 +119,63 @@ const STYLES = [
   {id:"cartoon", name:"卡通插画风", page:"style-cartoon.html", desc:"亲子餐厅、零食品牌、教育产品", count:0, color:"#f7e8a0"},
 ];
 
-function renderStyleList(){
-  const el = document.getElementById("styleList");
-  el.innerHTML = STYLES.map(s => `
-    <div class="glass-card">
-      <div class="card-img" style="background:${s.color};display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted)">${s.name}</div>
-      <div class="card-name">${s.name}</div>
-      <div class="card-desc">${s.desc}</div>
-      <div class="card-id">${s.count} 张图片</div>
-      <a href="admin-${s.id}.html" class="btn enter-style">进入管理</a>
-    </div>
-  `).join("");
+// 检查登录状态
+function checkAuth(){
+  var isLoggedIn = sessionStorage.getItem("admin_auth") === "true";
+  var overlay = document.getElementById("loginOverlay");
+  var content = document.getElementById("adminContent");
+  if(isLoggedIn){
+    overlay.classList.add("hidden");
+    content.classList.remove("hidden");
+    renderStyleList();
+  } else {
+    overlay.classList.remove("hidden");
+    content.classList.add("hidden");
+  }
 }
 
-// Create style-specific admin pages if not exist
-STYLES.forEach(s => {
-  const pageName = `admin-${s.id}.html`;
-  if(!window.location.href.includes(pageName)) return;
-  // We'll create them on demand
-});
+// 登录功能
+function setupLogin(){
+  var u = document.getElementById("username");
+  var p = document.getElementById("password");
+  var btn = document.getElementById("loginBtn");
+  var err = document.getElementById("loginError");
 
-renderStyleList();
+  function doLogin(){
+    if(u.value.trim() === "332211" && p.value.trim() === "112233"){
+      sessionStorage.setItem("admin_auth", "true");
+      err.textContent = "";
+      checkAuth();
+    } else {
+      err.textContent = "账号或密码错误";
+      p.value = "";
+      p.focus();
+    }
+  }
+
+  btn.addEventListener("click", doLogin);
+  u.addEventListener("keypress", function(e){ if(e.key==="Enter") p.focus(); });
+  p.addEventListener("keypress", function(e){ if(e.key==="Enter") doLogin(); });
+  u.focus();
+}
+
+function renderStyleList(){
+  var el = document.getElementById("styleList");
+  el.innerHTML = STYLES.map(function(s){
+    return '<div class="glass-card">'
+      + '<div class="card-img" style="background:'+s.color+';display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted)">'+s.name+'</div>'
+      + '<div class="card-name">'+s.name+'</div>'
+      + '<div class="card-desc">'+s.desc+'</div>'
+      + '<div class="card-id">'+s.count+' 张图片</div>'
+      + '<a href="admin-'+s.id+'.html" class="btn enter-style">进入管理</a>'
+      + '</div>';
+  }).join("");
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+  checkAuth();
+  setupLogin();
+});
 </script>
 </body>
 </html>
